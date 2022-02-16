@@ -7,7 +7,7 @@ import { WebSocketServer } from 'ws';
 function App() {
  
 
-  const socket = new WebSocket('ws://localhost:3001');
+  const socket = new WebSocket('ws://localhost:8000');
 
   socket.addEventListener('open',function(event){
     console.log('connected client frontend')
