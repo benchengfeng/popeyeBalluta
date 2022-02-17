@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import PagesNavigation from './pages/pagesNavigation';
 
 ReactDOM.render(
   <React.StrictMode>

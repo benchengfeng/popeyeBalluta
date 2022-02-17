@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 
 import LandingPage from "./landingPage";
-import Home from "./home";
+import Home from "./home/home";
 
 const PagesNavigation = () => {
   return (
