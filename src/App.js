@@ -1,43 +1,46 @@
 import "./App.css";
-import Axios from "axios";
 import { useEffect, useState } from "react";
 import MapComponent from "./component/map";
+import { Provider, useSelector } from "react-redux";
 
 function App() {
+
+  const lunchState = useSelector((lunchState) => lunchState.LunchState);
+  const villageState = useSelector((villageState) => villageState.VillageState);
  
-  const [coordinates, setCoordinates] = useState([]);
+
+  const [lunch, setLunch] = useState([]);
+  const [village, setVillage] = useState([]);
 
   const socket = new WebSocket('ws://localhost:8000');
 
-  socket.addEventListener('open',function(event){
-    console.log('connected client frontend')
-  })
+  // socket.addEventListener('open',function(event){
+  // })
+
+  // setting data received from server webSocket //
 
   socket.addEventListener('message',function(event){
     const data = eval(event.data)
     console.log(data)
-    setCoordinates(data)
-
+    if (data[0]==='lunch'){
+      setLunch(data[1]);
+    }
+    if (data[0]==='village'){
+      setVillage(data[1]);
+    }
   })
 
-  const sendMessageSocket=()=>{
-    socket.send('hello from client one')
-  }
+  // ******************* //
+
+  useEffect(()=>{
+    
+  },[])
+
   return (
-    <div className="App">
 
-  
-      <h1>poppey Red Acre</h1>
-<MapComponent></MapComponent>
-<button onClick={()=>sendMessageSocket()}> USE SOCKET </button>
-
-{coordinates.length>0 && coordinates.map((point,i)=>
-<div>
-<span>{point[0]}latitude {point[1]} longitude point number {i}</span>
-</div>
-)}
-
-
+    <div>
+      <MapComponent/>
+    {/* <PagesNavigation /> */}
     </div>
   );
 }
