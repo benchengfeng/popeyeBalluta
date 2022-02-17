@@ -1,8 +1,8 @@
-import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import MapComponent from "../component/map";
 
-const MapComponent = () => {
+const Home = () => {
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
 
   const [lunch, setLunch] = useState([]);
@@ -31,8 +31,9 @@ const MapComponent = () => {
 
   return (
     <div>
-      <h1>Map Component</h1>
+      <h1>Home</h1>
+      <MapComponent></MapComponent>
     </div>
   );
 };
-export default MapComponent;
+export default Home;
