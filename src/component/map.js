@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { useEffect, useState } from "react";
+import { URL } from "../util/config";
 
 
 const MapComponent =()=>{
@@ -14,7 +15,7 @@ const MapComponent =()=>{
     const getCoordinates = async () => {
       var res = null;
       try {
-        res = await Axios.get("http://localhost:3001/village");
+        res = await Axios.get(`http://localhost:8000/village`);
         
       } catch (err) {
         console.log(err);
