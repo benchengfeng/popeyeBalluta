@@ -27,33 +27,33 @@ L.Icon.Default.mergeOptions({
 //   popupAnchor: [-3, -76]
 // });
 
-const MapComponent = ({lunch , village}) => {
-  // const lunchState = useSelector((lunchState) => lunchState.LunchState);
-  // const villageState = useSelector((villageState) => villageState.VillageState);
-
-  // const [lunch, setLunch] = useState([]);
-  // const [village, setVillage] = useState([]);
+const MapComponent = ({ lunch, village }) => {
   const [popeye, setPopeye] = useState([]);
   const [positionVillage, setPositionVillage] = useState([]);
   const [positionLunch, setPositionLunch] = useState([]);
+  const [step, setStep] = useState(0);
+
+  // const [positionLunch, setPositionLunch] = useState([]);
 
   useEffect(() => {
-    if (lunch) 
-    // setLunch([...lunch.coordinates]);
-    console.log('lucnh from map',lunch)
+    if (lunch)
+      // setLunch([...lunch.coordinates]);
+      console.log("lucnh from map", lunch);
   }, [lunch]);
 
   useEffect(() => {
-    if (lunch?.coordinates.length > 0) 
-    // setVillage(villageState);
-    console.log('lucnh from map',lunch)
+    if (lunch?.coordinates.length > 0)
+      // setVillage(villageState);
+      console.log("lucnh from map", lunch);
   }, [village]);
 
   useEffect(() => {
     if (village.coordinates?.length > 0) {
       setPositionVillage(village.coordinates[0]);
       console.log("map position Village", village.coordinates[0]);
+      setStep(0);
     }
+
   }, [village]);
 
   useEffect(() => {
@@ -63,11 +63,30 @@ const MapComponent = ({lunch , village}) => {
     }
   }, [village]);
 
+  useEffect(() => {
+    if (village.coordinates?.length > 0) {
+    setPositionVillage(village.coordinates[step]);
+    }
+  }, [step]);
+
+  const handleStep = (e) => {
+    if(step < 115)
+    setStep(step + 1);
+    console.log("step map ", step);
+  };
+
   return (
     <>
-      {positionVillage.length>0 && positionLunch.length>0 ? (
+      {positionVillage.length > 0 && positionLunch.length > 0 ? (
         <div>
           {" "}
+          <div
+            className="btn-banner"
+            id="theme1"
+            onClick={(e) => handleStep(e)}
+          >
+            next
+          </div>
           <MapContainer
             center={positionVillage}
             zoom={20}
