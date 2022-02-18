@@ -7,76 +7,139 @@ import { setThemeState } from "../../redux/slices/themeSlice";
 import { theme } from "../../util/theme";
 import StyledHome from "./StyledHome";
 
-
 const Home = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const themeState = useSelector((themeState) => themeState.ThemeState);
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
+  const [step, setStep] = useState(0);
+  const [game, setGame] = useState(false);
 
   const [themeId, setThemeId] = useState(0);
   const [lunch, setLunch] = useState();
   const [village, setVillage] = useState();
+  const [connection, setConnection] = useState(false);
+  const [connectionSocket, setConnectionSocket] = useState(null);
 
-  console.log("lucnh from home",lunch);
+  // setting data received from server webSocket //
+
+  // useEffect(()=>{
+
+  //   if (connection=== false){
+  //  const socket = new WebSocket("ws://localhost:8000");
+  //   setConnection(true)
+  //   setConnectionSocket(socket)
+  //   }
+  // },[])
+
+  // useEffect(()=>{
+
+  //   if (connectionSocket){
+  //   connectionSocket.addEventListener("message", function (event) {
+  //     const data = eval(event.data);
+  //     if (data[0] === "lunch") {
+  //       setLunch(data[1]);
+  //     }
+  //     if (data[0] === "village") {
+  //       setVillage(data[1]);
+  //     }
+  //     storeInDatabase()
+  //   });
+  // }
+
+  // },[connection])
+
+  // ***************** //
 
   useEffect(() => {
-    if (lunchState) {setLunch(lunchState);
-    console.log("lucnhstate from home",lunchState);
+    if (lunchState) {
+      setLunch(lunchState);
+      console.log("lucnhstate from home", lunchState);
     }
   }, [lunchState]);
 
   useEffect(() => {
-    if (villageState) {setVillage(villageState);
-    console.log("village state from home",villageState);
+    if (villageState) {
+      setVillage(villageState);
     }
   }, [villageState]);
 
+  console.log("village state from home", village);
 
   useEffect(() => {
-  if (themeState){
-    setThemeId(themeState.activeId)
-    console.log('theme state',themeState.activeId)
-  }
+    if (themeState) {
+      setThemeId(themeState.activeId);
+      console.log("theme state", themeState.activeId);
+    }
   }, []);
-  
 
-  
+  const handleStart = async () => {
+    setGame(true);
+
+    if (village?.coordinates) {
+      setTimeout(() => {
+        setStep(step + 1);
+        console.log("step home ", step);
+      }, 1500);
+    }
+  };
+
+  // const handleOneStep = async ()=> {
+
+  //   if(step < 115)
+  // setTimeout(() => {
+
+  //   setStep(step + 1);
+  //   console.log("step home ", step);
+
+  // }, 1500);
+
+  // }
+
+  useEffect(() => {
+    if (game) handleStart();
+  }, [step]);
 
   const handleTheme = (e) => {
     if (e.target.id === "theme1") {
       setThemeId(0);
-      dispatch(setThemeState(0))
+      dispatch(setThemeState(0));
     } else if (e.target.id === "theme2") {
       setThemeId(1);
-      dispatch(setThemeState(1))
+      dispatch(setThemeState(1));
     } else if (e.target.id === "theme3") {
       setThemeId(2);
-      dispatch(setThemeState(2))
+      dispatch(setThemeState(2));
     }
   };
 
   return (
     <ThemeProvider theme={theme[themeId]}>
       <StyledHome>
-        <div className="container-all" >
+        <div className="container-all">
           <div className="container-buttons">
             <Link to="/" style={{ textDecoration: "none" }}>
-              <div className="btn-square" >
-                Back
+              <div className="btn-square">
+                <h3>Back</h3>
               </div>
             </Link>
-            <div className="btn-square">
-              start
-            </div>
+              {game ? (
+                <div className="btn-square" onClick={() => setGame(false)}>
+                  <h3>Stop</h3>
+                </div>
+              ) : (
+                <div className="btn-square" onClick={() => handleStart()}>
+                  <h1>Start</h1>
+                </div>
+              )}
+            
           </div>
           <div className="">
             <h1>Home</h1>
             <div
               className="btn-banner"
-              id = "theme1"
+              id="theme1"
               onClick={(e) => handleTheme(e)}
             >
               Theme 1
@@ -88,14 +151,14 @@ const Home = () => {
             >
               Theme 2
             </div>
-            <div
+            {/* <div
               className="btn-banner"
               id="theme3"
               onClick={(e) => handleTheme(e)}
             >
               Theme 3
-            </div>
-            <div
+            </div> */}
+            {/* <div
               className="btn-banner"
               id="theme4"
               onClick={(e) => handleTheme(e)}
@@ -107,18 +170,21 @@ const Home = () => {
               id="theme5"
               onClick={(e) => handleTheme(e)}
             ></div>
-                        <div
+            <div
               className="btn-banner"
               id="theme4"
               onClick={(e) => handleTheme(e)}
             >
               full Screen
-            </div>
+            </div> */}
           </div>
-          {(lunch && village ) ? (          <div>  
-            <MapComponent  lunch={lunch} village={village}/>
-          </div>):(<div>loading ...</div>)}
-
+          {lunch && village ? (
+            <div>
+              <MapComponent lunch={lunch} village={village} step={step} />
+            </div>
+          ) : (
+            <div>loading ...</div>
+          )}
         </div>
       </StyledHome>
     </ThemeProvider>

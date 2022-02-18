@@ -27,11 +27,11 @@ L.Icon.Default.mergeOptions({
 //   popupAnchor: [-3, -76]
 // });
 
-const MapComponent = ({ lunch, village }) => {
+const MapComponent = ({ lunch, village, step}) => {
   const [popeye, setPopeye] = useState([]);
   const [positionVillage, setPositionVillage] = useState([]);
   const [positionLunch, setPositionLunch] = useState([]);
-  const [step, setStep] = useState(0);
+  // const [step, setStep] = useState(0);
 
   // const [positionLunch, setPositionLunch] = useState([]);
 
@@ -51,7 +51,7 @@ const MapComponent = ({ lunch, village }) => {
     if (village.coordinates?.length > 0) {
       setPositionVillage(village.coordinates[0]);
       console.log("map position Village", village.coordinates[0]);
-      setStep(0);
+
     }
 
   }, [village]);
@@ -69,24 +69,24 @@ const MapComponent = ({ lunch, village }) => {
     }
   }, [step]);
 
-  const handleStep = (e) => {
-    if(step < 115)
-    setStep(step + 1);
-    console.log("step map ", step);
-  };
+  // const handleStep = (e) => {
+  //   if(step < 115)
+  //   setStep(step + 1);
+  //   console.log("step map ", step);
+  // };
 
   return (
     <>
       {positionVillage.length > 0 && positionLunch.length > 0 ? (
         <div>
           {" "}
-          <div
+          {/* <div
             className="btn-banner"
             id="theme1"
-            onClick={(e) => handleStep(e)}
+            onClick={(e) => handleStep}
           >
             next
-          </div>
+          </div> */}
           <MapContainer
             center={positionVillage}
             zoom={20}
