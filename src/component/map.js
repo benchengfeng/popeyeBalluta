@@ -2,15 +2,15 @@ import Axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-    iconUrl: require('leaflet/dist/images/marker-icon.png'),
-    shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
 // const redIcon = L.icon({
@@ -27,68 +27,73 @@ L.Icon.Default.mergeOptions({
 //   popupAnchor: [-3, -76]
 // });
 
-const MapComponent = () => {
-  const lunchState = useSelector((lunchState) => lunchState.LunchState);
-  const villageState = useSelector((villageState) => villageState.VillageState);
+const MapComponent = ({lunch , village}) => {
+  // const lunchState = useSelector((lunchState) => lunchState.LunchState);
+  // const villageState = useSelector((villageState) => villageState.VillageState);
 
-  const [lunch, setLunch] = useState([]);
-  const [village, setVillage] = useState([]);
+  // const [lunch, setLunch] = useState([]);
+  // const [village, setVillage] = useState([]);
   const [popeye, setPopeye] = useState([]);
-  const [positionVillage, setPositionVillage] = useState([
-    35.915087047076575, 14.495279788970945,
-  ]);
-  const [positionLunch, setPositionLunch] = useState([
-    35.915087047076575, 14.495279788970945,
-  ]);
+  const [positionVillage, setPositionVillage] = useState([]);
+  const [positionLunch, setPositionLunch] = useState([]);
 
   useEffect(() => {
-    if (lunchState) setLunch([...lunchState.coordinates]);
-  }, [lunchState]);
+    if (lunch) 
+    // setLunch([...lunch.coordinates]);
+    console.log('lucnh from map',lunch)
+  }, [lunch]);
 
   useEffect(() => {
-    if (villageState?.coordinates.length > 0) setVillage(villageState);
-  }, [villageState]);
+    if (lunch?.coordinates.length > 0) 
+    // setVillage(villageState);
+    console.log('lucnh from map',lunch)
+  }, [village]);
 
   useEffect(() => {
     if (village.coordinates?.length > 0) {
-      setPositionVillage(village.coordinates[50]);
-      console.log("map position Village", village.coordinates[50]);
+      setPositionVillage(village.coordinates[0]);
+      console.log("map position Village", village.coordinates[0]);
     }
   }, [village]);
 
   useEffect(() => {
     if (lunch.coordinates?.length > 0) {
-      setPositionLunch(lunch.coordinates[50]);
-      console.log("map position lunch", lunch.coordinates[50]);
+      setPositionLunch(lunch.coordinates[0]);
+      console.log("map position lunch", lunch.coordinates[0]);
     }
   }, [village]);
 
   return (
     <>
-      <MapContainer
-        center={positionVillage}
-        zoom={20}
-        style={{ height: "440px", marginTop: "80px", marginBottom: "90px" }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+      {positionVillage.length>0 && positionLunch.length>0 ? (
+        <div>
+          {" "}
+          <MapContainer
+            center={positionVillage}
+            zoom={20}
+            style={{ height: "440px", marginTop: "80px", marginBottom: "90px" }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
 
-
-          <Marker position={[35.915087047076575, 14.495279788970945]}>
-            <Popup>
-              <p className="place-name">{"[place.venue.name]"}</p>
-              <p className="place-address">
-                {"[place.venue.location.address]"}
-              </p>
-              <p className="place-category">
-                {"[place.venue.categories[0].name]"}
-              </p>
-            </Popup>
-          </Marker>
-
-      </MapContainer>
+            <Marker position={positionVillage}>
+              <Popup>
+                <p className="place-name">{"[place.venue.name]"}</p>
+                <p className="place-address">
+                  {"[place.venue.location.address]"}
+                </p>
+                <p className="place-category">
+                  {"[place.venue.categories[0].name]"}
+                </p>
+              </Popup>
+            </Marker>
+          </MapContainer>
+        </div>
+      ) : (
+        <div>loading ...</div>
+      )}
     </>
   );
 };

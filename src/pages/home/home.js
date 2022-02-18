@@ -17,8 +17,8 @@ const Home = () => {
   const villageState = useSelector((villageState) => villageState.VillageState);
 
   const [themeId, setThemeId] = useState(0);
-  const [lunch, setLunch] = useState([]);
-  const [village, setVillage] = useState([]);
+  const [lunch, setLunch] = useState();
+  const [village, setVillage] = useState();
 
   console.log("lucnh from home",lunch);
 
@@ -115,9 +115,10 @@ const Home = () => {
               full Screen
             </div>
           </div>
-          <div>  
-            <MapComponent  />
-          </div>
+          {(lunch && village ) ? (          <div>  
+            <MapComponent  lunch={lunch} village={village}/>
+          </div>):(<div>loading ...</div>)}
+
         </div>
       </StyledHome>
     </ThemeProvider>
