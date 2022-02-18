@@ -4,13 +4,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 
-const MapComponent = ({ lunchState, villageState }) => {
+  // const redIcon = L.icon({
+  //   iconUrl: "https://assets.stickpng.com/images/580b585b2edbce24c47b2a24.png",
+  //   iconSize: [38, 95], 
+  //   iconAnchor: [22, 94], 
+  //   popupAnchor: [-3, -76] 
+  // });
+  
+  // const blueIcon = L.icon({
+  //   iconUrl: "https://assets.stickpng.com/images/580b585b2edbce24c47b2a24.png",
+  //   iconSize: [38, 95],
+  //   iconAnchor: [22, 94],
+  //   popupAnchor: [-3, -76] 
+  // });
+
+
+
+const MapComponent = () => {
+
+ 
+
+  const lunchState = useSelector((lunchState) => lunchState.LunchState);
+  const villageState = useSelector((villageState) => villageState.VillageState);
+  
   const [lunch, setLunch] = useState([]);
   const [village, setVillage] = useState([]);
   const [popeye, setPopeye] = useState([]);
+  const [positionVillage, setPositionVillage] = useState([35.915087047076575,14.495279788970945]);
+  const [positionLunch, setPositionLunch] = useState([35.915087047076575,14.495279788970945]);
 
   useEffect(() => {
-    if (lunchState?.coordinates.length>0) setLunch([...lunchState.coordinates]);
+    if (lunchState) setLunch([...lunchState.coordinates]);
   }, [lunchState]);
 
   useEffect(() => {
@@ -19,34 +43,25 @@ const MapComponent = ({ lunchState, villageState }) => {
 
   useEffect(() => {
     if (village.coordinates?.length>0) {
-    const point = village.coordinates[0];
+    setPositionVillage (village.coordinates[50])
+    console.log('map position Village', village.coordinates[50])
     }
   }, [village]);
 
-
-  const redIcon = L.icon({
-    iconUrl: "https://assets.stickpng.com/images/580b585b2edbce24c47b2a24.png",
-    iconSize: [38, 95], 
-    iconAnchor: [22, 94], 
-    popupAnchor: [-3, -76] 
-  });
-  
-  const blueIcon = L.icon({
-    iconUrl: "https://assets.stickpng.com/images/580b585b2edbce24c47b2a24.png",
-    iconSize: [38, 95],
-    iconAnchor: [22, 94],
-    popupAnchor: [-3, -76] 
-  });
-
-
+  useEffect(() => {
+    if (lunch.coordinates?.length>0) {
+    setPositionLunch (lunch.coordinates[50])
+    console.log('map position lunch', lunch.coordinates[50])
+    }
+  }, [village]);
 
 
   return (
     <>
       <MapContainer
-        center={[35.915087047076575,14.495279788970945]}
+        center={positionVillage}
         zoom={20}
-        style={{ height: "9440px" ,marginTop: "80px", marginBottom: "90px" }}
+        style={{ height: "440px" ,marginTop: "80px", marginBottom: "90px" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -57,7 +72,7 @@ const MapComponent = ({ lunchState, villageState }) => {
   <Marker
                 key={i}
                 position={[35.915087047076575,14.495279788970945]}
-                icon={popeye ? redIcon : blueIcon}
+                // icon={popeye ? redIcon : blueIcon}
                 // zIndexOffset={place.placeClicked ? 10000 : 0}
                 // onClick={e => {
                 //   e.target.setIcon(redIcon);

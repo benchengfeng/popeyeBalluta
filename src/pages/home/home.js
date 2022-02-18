@@ -20,22 +20,25 @@ const Home = () => {
   const [lunch, setLunch] = useState([]);
   const [village, setVillage] = useState([]);
 
+  console.log("lucnh from home",lunch);
+
   useEffect(() => {
-    if (lunchState) setLunch(lunchState);
-    console.log("lucnh from home",lunchState);
+    if (lunchState) {setLunch(lunchState);
+    console.log("lucnhstate from home",lunchState);
+    }
   }, [lunchState]);
 
   useEffect(() => {
-    if (villageState) setVillage(villageState);
-    console.log("village from home",villageState);
-    
+    if (villageState) {setVillage(villageState);
+    console.log("village state from home",villageState);
+    }
   }, [villageState]);
 
 
   useEffect(() => {
   if (themeState){
     setThemeId(themeState.activeId)
-    console.log('theme',themeState.activeId)
+    console.log('theme state',themeState.activeId)
   }
   }, []);
 
@@ -111,14 +114,9 @@ const Home = () => {
             >
               full Screen
             </div>
-            <div
-              className="btn-banner"
-              id="theme5"
-              onClick={(e) => handleTheme(e)}
-            ></div>
           </div>
-          <div>
-            <MapComponent lunch={lunch} village={village} />
+          <div>  
+            <MapComponent  />
           </div>
         </div>
       </StyledHome>
