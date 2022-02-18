@@ -10,9 +10,12 @@ const VillageState = createSlice({
   reducers: {
    
     setVillageState: (state, action) => {
-      state.coordinates = action.payload;
-      console.log('added state is',action.payload);
-    },
+      const arrayFix = []
+      action.payload.map((o)=>{
+         arrayFix.push(o.reverse())
+     })
+     state.coordinates = arrayFix;
+   },
     
   },
 });

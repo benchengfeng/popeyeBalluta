@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-const StyledHome = styled.form`
+const StyledLanding = styled.form`
   display: flex;
   justify-content: start;
   padding: 48px 72px 48px 48px;
@@ -29,7 +29,7 @@ const StyledHome = styled.form`
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background:${props => props.theme.color2};
+    background: ${props => props.theme.color2});
     height: 48px;
     padding: 12px;
     cursor: pointer;
@@ -41,7 +41,7 @@ const StyledHome = styled.form`
     position: relative;
     text-color : white;
     border: 2px solid #080808;
-    background: linear-gradient(90deg, rgba(161,45,45,1) 0%, rgba(8,0,40,1) 39%, rgba(12,58,68,1) 68%, rgba(195,17,17,1) 100%);
+    background: ${props => props.theme.color4};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +60,7 @@ const StyledHome = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, rgba(227,227,227,1) 5%, rgba(122,107,16,1) 74%);
+  background: ${props => props.theme.color3};
   border-radius: 20px;
   height: 48px;
   padding: 12px;
@@ -71,7 +71,7 @@ const StyledHome = styled.form`
 
 .container-buttons{
   width: 100%;
-  background: linear-gradient(90deg, rgba(8,0,40,1) 0%, rgba(227,23,23,1) 39%, rgba(195,17,17,1) 100%);
+  background:${props => props.theme.color1};
   max-width: 1056px;
   display: flex;
   flex-direction: row;
@@ -170,4 +170,4 @@ const StyledHome = styled.form`
   }
 `
 
-export default StyledHome
+export default StyledLanding

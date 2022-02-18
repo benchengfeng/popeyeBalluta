@@ -8,6 +8,7 @@ import { setLunchState } from "./redux/slices/luncheSlice";
 import { setVillageState } from "./redux/slices/villageSlice";
 import Axios  from "axios";
 
+
 function App() {
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
@@ -22,7 +23,6 @@ function App() {
 
   socket.addEventListener("message", function (event) {
     const data = eval(event.data);
-    console.log(data);
     if (data[0] === "lunch") {
       setLunch(data[1]);
     }

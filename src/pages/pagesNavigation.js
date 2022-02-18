@@ -4,8 +4,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-
-import LandingPage from "./landingPage";
+import LandingPage from "./landing/landingPage";
 import Home from "./home/home";
 
 const PagesNavigation = () => {

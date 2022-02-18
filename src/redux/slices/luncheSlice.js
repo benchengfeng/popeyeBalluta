@@ -10,8 +10,11 @@ const LunchState = createSlice({
   reducers: {
    
     setLunchState: (state, action) => {
-      state.coordinates = action.payload;
-      console.log('added state is',action.payload);
+      const arrayFix = []
+       action.payload.map((o)=>{
+          arrayFix.push(o.reverse())
+      })
+      state.coordinates = arrayFix;
     },
   },
 });
