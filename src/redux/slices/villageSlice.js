@@ -4,8 +4,8 @@ const initialState = {  title: "village",
 coordinates: [],
 };
 
-const VillageState = createSlice({
-  name: "VillageState",
+const VillageSlice = createSlice({
+  name: "VillageSlice",
   initialState,
   reducers: {
    
@@ -20,5 +20,5 @@ const VillageState = createSlice({
   },
 });
 
-export const { setVillageState } = VillageState.actions;
-export default VillageState.reducer
+export const { setVillageState } = VillageSlice.actions;
+export default VillageSlice.reducer

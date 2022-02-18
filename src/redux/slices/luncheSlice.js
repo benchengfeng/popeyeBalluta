@@ -4,8 +4,8 @@ const initialState = {  title: "lunch",
 coordinates: [],
 };
 
-const LunchState = createSlice({
-  name: "LunchState",
+const LunchSlice = createSlice({
+  name: "LunchSlice",
   initialState,
   reducers: {
    
@@ -19,5 +19,5 @@ const LunchState = createSlice({
   },
 });
 
-export const { setLunchState } = LunchState.actions;
-export default LunchState.reducer
+export const { setLunchState } = LunchSlice.actions;
+export default LunchSlice.reducer

@@ -1,6 +1,5 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import MapComponent from "./component/map";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import PagesNavigation from "./pages/pagesNavigation";
 import store from "./redux/store";
@@ -10,27 +9,49 @@ import Axios  from "axios";
 
 
 function App() {
-  const lunchState = useSelector((lunchState) => lunchState.LunchState);
-  const villageState = useSelector((villageState) => villageState.VillageState);
   const dispatch = useDispatch();
 
   const [lunch, setLunch] = useState([]);
   const [village, setVillage] = useState([]);
-
-  const socket = new WebSocket("ws://localhost:8000");
+  const [connection, setConnection] = useState(false);
+  const [connectionSocket, setConnectionSocket] = useState(null);
+  
 
   // setting data received from server webSocket //
 
-  socket.addEventListener("message", function (event) {
-    const data = eval(event.data);
-    if (data[0] === "lunch") {
-      setLunch(data[1]);
+
+
+  useEffect(()=>{
+
+
+    if (connection=== false){
+   const socket = new WebSocket("ws://localhost:8000");
+    setConnection(true) 
+    setConnectionSocket(socket)
     }
-    if (data[0] === "village") {
-      setVillage(data[1]);
-    }
-    storeInDatabase()
-  });
+  },[])
+
+
+  useEffect(()=>{
+
+    if (connectionSocket){
+    connectionSocket.addEventListener("message", function (event) {
+      const data = eval(event.data);
+      if (data[0] === "lunch") {
+        setLunch(data[1]);
+      }
+      if (data[0] === "village") {
+        setVillage(data[1]);
+      }
+      storeInDatabase()
+    });
+  }
+
+  },[connection])
+
+
+
+
 
   const storeInDatabase = async ()=>{
     var res = null;
@@ -42,12 +63,8 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    if (lunch !== null) dispatch(setLunchState(lunch));
-  }, []);
-
-
   // ******************* //
+  
 
   // Storing in redux ***** //
 

@@ -60,7 +60,7 @@ const StyledHome = styled.form`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(90deg, rgba(227,227,227,1) 5%, rgba(122,107,16,1) 74%);
+  background: ${props => props.theme.color3};
   border-radius: 20px;
   height: 48px;
   padding: 12px;
@@ -71,7 +71,11 @@ const StyledHome = styled.form`
 
 .container-buttons{
   width: 100%;
-  background: linear-gradient(90deg, rgba(8,0,40,1) 0%, rgba(227,23,23,1) 39%, rgba(195,17,17,1) 100%);
+  background: ${props => props.theme.color1};
+  border: 2px solid #080808;
+  border-radius: 20px;
+  padding-top: 20px;
+  align-content:center;
   max-width: 1056px;
   display: flex;
   flex-direction: row;
