@@ -76,7 +76,6 @@ const Home = () => {
             <h1>Home</h1>
             <div
               className="btn-banner"
-              name="theme1"
               id = "theme1"
               onClick={(e) => handleTheme(e)}
             >
