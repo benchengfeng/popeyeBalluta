@@ -9,7 +9,6 @@ const ThemeSlice = createSlice({
   reducers: {
     setThemeState: (state, action) => {
       state.activeId = action.payload;
-      console.log('gotcha',action.payload)
     },
   },
 });

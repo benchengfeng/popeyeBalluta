@@ -28,6 +28,7 @@ const Home = () => {
   useEffect(() => {
     if (villageState) setVillage(villageState);
     console.log("village from home",villageState);
+    
   }, [villageState]);
 
 
@@ -59,11 +60,11 @@ const Home = () => {
         <div className="container-all" >
           <div className="container-buttons">
             <Link to="/" style={{ textDecoration: "none" }}>
-              <div className="btn-square" style={{ width: "40px" }}>
+              <div className="btn-square" >
                 Back
               </div>
             </Link>
-            <div className="btn-square" style={{ width: "40px" }}>
+            <div className="btn-square">
               start
             </div>
           </div>

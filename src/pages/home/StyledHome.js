@@ -4,7 +4,7 @@ const StyledHome = styled.form`
   justify-content: start;
   padding: 48px 72px 48px 48px;
   position: relative;
-  background:${props => props.theme.color2};
+  background:${props => props.theme.color1};
 
 
   .wrapper-input-options {
@@ -29,7 +29,7 @@ const StyledHome = styled.form`
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background:${props => props.theme.color2};
+    background:${props => props.theme.color1};
     height: 48px;
     padding: 12px;
     cursor: pointer;
@@ -56,7 +56,7 @@ const StyledHome = styled.form`
 .btn-square{
   position: relative;
   border: 2px solid #080808;
-  width: 50px
+  width: 190px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,7 +71,7 @@ const StyledHome = styled.form`
 
 .container-buttons{
   width: 100%;
-  background: ${props => props.theme.color1};
+  background: ${props => props.theme.color2};
   border: 2px solid #080808;
   border-radius: 20px;
   padding-top: 20px;

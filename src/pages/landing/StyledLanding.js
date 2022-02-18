@@ -56,7 +56,7 @@ const StyledLanding = styled.form`
 .btn-square{
   position: relative;
   border: 2px solid #080808;
-  width: 50px
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: center;

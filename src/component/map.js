@@ -11,12 +11,10 @@ const MapComponent = ({ lunchState, villageState }) => {
 
   useEffect(() => {
     if (lunchState?.coordinates.length>0) setLunch([...lunchState.coordinates]);
-    console.log("lunch", lunch);
   }, [lunchState]);
 
   useEffect(() => {
     if (villageState?.coordinates.length>0) setVillage(villageState);
-    console.log("village", village);
   }, [villageState]);
 
   useEffect(() => {
