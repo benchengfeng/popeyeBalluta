@@ -20,6 +20,11 @@ const StyledLanding = styled.form`
     }
   }
 
+  .btn-landing:hover {
+    box-shadow: 0 0px 10px rgba(112,112,112,0.5);
+    transition: 400ms;
+    border :20px solid #080808;
+  }
 
   .btn-banner{
     position: relative;

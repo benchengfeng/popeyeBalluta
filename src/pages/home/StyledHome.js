@@ -60,12 +60,36 @@ const StyledHome = styled.form`
     border-radius: 20px;
     padding-top: 20px;
     align-content:center;
+    min-height:150px;
     max-width: 1056px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     
   }
+
+  .btn-banner:hover {
+    box-shadow: 0 0px 10px rgba(112,112,112,0.5);
+    transition: 400ms;
+    border :20px solid #080808;
+}
+.btn-landing:hover {
+  box-shadow: 0 0px 10px rgba(112,112,112,0.5);
+  transition: 400ms;
+  border :20px solid #080808;
+}
+
+.container-btn-square:hover {
+  box-shadow: 0 0px 10px rgba(112,112,112,0.5);
+  transition: 400ms;
+  border :20px solid #080808;
+}
+
+.btn-square:hover{
+  box-shadow: 0 0px 10px rgba(112,112,112,0.5);
+  transition: 400ms;
+  border :20px solid #080808;
+}
 
 .btn-square{
   position: relative;

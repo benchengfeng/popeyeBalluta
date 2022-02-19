@@ -14,8 +14,8 @@ const Home = () => {
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
   const [step, setStep] = useState(0);
-  const [gameQuick, setGameQuick] = useState(false);
-  const [gameSlow, setGameSlow] = useState(false);
+  const [game, setGame] = useState(false);
+
 
   const [themeId, setThemeId] = useState(0);
   const [lunch, setLunch] = useState();
@@ -24,6 +24,8 @@ const Home = () => {
   const [villageWsLocation, setVillageWsLocation] = useState([]);
   const [connection, setConnection] = useState(false);
   const [connectionSocket, setConnectionSocket] = useState(null);
+  const [journey,setJourney]=useState()
+  const [pace,setPace]=useState()
 
   // setting data received from server webSocket //
 
@@ -78,38 +80,31 @@ const Home = () => {
     }
   }, []);
 
-  const handleStartQuick = async () => {
-    setGameQuick(true);
 
-    if (village?.coordinates) {
-      setTimeout(() => {
-        connectionSocket.send(step);
-        setStep(step + 1);
-        console.log("step home ", step);
-      }, 1500);
+  const handleStart = async (e) => {
+
+    let timing=1500
+    if (pace ==="slow"){
+timing=10000
     }
-  };
-
-  const handleStartSlow = async () => {
-    setGameSlow(true);
+    
+    setGame(true);
 
     if (village?.coordinates) {
       setTimeout(() => {
         connectionSocket.send(step);
         setStep(step + 1);
         console.log("step home ", step);
-      }, 10000);
+      }, timing);
     }
   };
 
   const handleStop = async () => {
-    setGameSlow(false);
-    setGameQuick(false);
+    setGame(false);
   };
 
   useEffect(() => {
-    if (gameQuick) handleStartQuick();
-    if (gameSlow) handleStartSlow();
+    if (game) handleStart();
   }, [step]);
 
   const handleTheme = (e) => {
@@ -125,22 +120,41 @@ const Home = () => {
     }
   };
 
+  const handleJourney=(e)=>{
+    setJourney(e.target.id)
+  }
+  const handlePace=(e)=>{
+    setPace(e.target.id)
+  }
+
   return (
     <ThemeProvider theme={theme[themeId]}>
       <StyledHome>
         <div className="container-all">
-          <div className="container-buttons">
+          <div className="container-btn-square">
             <Link to="/" style={{ textDecoration: "none" }}>
               <div className="btn-square">
                 <h3>Back</h3>
               </div>
             </Link>
-            <div className="btn-square">
-              <h3>Home</h3>
+            <div className="btn-square" onClick={handleStart}>
+              <h3 onClick={handleStart}>start</h3>
+            </div>
+          </div>
+          <div className="container-btn-square">
+            <div className="btn-square" id="village" onClick={handleJourney}>
+              {journey ==="village" ? (<h3 style={{color:'red'}}>Village To Work</h3>):(<h3 id="village" onClick={handleJourney}>Village To Work</h3>)}
+            </div>
+            <div className="btn-square" id="lunch" onClick={handleJourney}>
+              {journey ==="lunch" ? (<h3 style={{color:'red'}}>Going for Lunch</h3>):(<h3 id="lunch" onClick={handleJourney}>Going for Lunch</h3>)}
+            </div>
+
+            <div className="btn-square" id="home" onClick={handleJourney}>
+             {journey ==="home" ? (<h3 style={{color:'red'}}>Back Home</h3>):(<h3 id="home" onClick={handleJourney}>Back Home</h3>)}
             </div>
           </div>
 
-          {gameQuick || gameSlow ? (
+          {game ? (
             <div className="container-btn-square">
               <div className="btn-square" onClick={() => handleStop()}>
                 <h3>Stop</h3>
@@ -148,11 +162,11 @@ const Home = () => {
             </div>
           ) : (
             <div className="container-btn-square">
-              <div className="btn-square" onClick={() => handleStartQuick()}>
-                <h1>Start 1.5 sec</h1>
+              <div className="btn-square" id="fast" onClick={handlePace}>
+                {pace ==="fast" ? (<h3 style={{color:'red'}}>1.5 sec</h3>):(<h3 id="fast" onClick={handlePace}>1.5 sec</h3>)}
               </div>
-              <div className="btn-square" onClick={() => handleStartSlow()}>
-                <h1>Start 10 sec</h1>
+              <div className="btn-square" id="slow" onClick={handlePace}>
+                {pace ==="slow" ? (<h3 style={{color:'red'}}>10 sec</h3>):(<h3 id="slow" onClick={handlePace}>10 sec</h3>)}
               </div>
             </div>
           )}
@@ -180,25 +194,7 @@ const Home = () => {
             >
               Theme 3
             </div> */}
-            {/* <div
-              className="btn-banner"
-              id="theme4"
-              onClick={(e) => handleTheme(e)}
-            >
-              full Screen
-            </div>
-            <div
-              className="btn-banner"
-              id="theme5"
-              onClick={(e) => handleTheme(e)}
-            ></div>
-            <div
-              className="btn-banner"
-              id="theme4"
-              onClick={(e) => handleTheme(e)}
-            >
-              full Screen
-            </div> */}
+ 
           </div>
           {lunchWsLocation.length > 0 && villageWsLocation.length > 0 ? (
             <div>
