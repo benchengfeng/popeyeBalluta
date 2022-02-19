@@ -23,7 +23,7 @@ const StyledHome = styled.form`
 
   .btn-banner{
     position: relative;
-    text-color : white;
+    color : ${props => props.theme.textColor};
     border: 2px solid #080808;
     display: flex;
     align-items: center;
@@ -53,9 +53,24 @@ const StyledHome = styled.form`
     font-size: 16px;
   }
 
+  .container-btn-square{
+    width: 100%;
+    background: ${props => props.theme.color2};
+    border: 2px solid #080808;
+    border-radius: 20px;
+    padding-top: 20px;
+    align-content:center;
+    max-width: 1056px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+  }
+
 .btn-square{
   position: relative;
   border: 2px solid #080808;
+  color : ${props => props.theme.textColor};
   width: 190px;
   display: flex;
   align-items: center;
@@ -64,6 +79,7 @@ const StyledHome = styled.form`
   border-radius: 20px;
   height: 48px;
   padding: 12px;
+  margin: 10px;
   cursor: pointer;
   margin-bottom: 24px;
   font-size: 16px;

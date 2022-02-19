@@ -6,7 +6,7 @@ export const theme = [
       "linear-gradient(90deg, rgba(113,113,113,1) 0%, rgba(171,170,166,1) 18%, rgba(185,27,27,1) 46%, rgba(213,212,204,1) 88%)",
     color3: "#000",
     color4: "#000",
-    textColor: "#000",
+    textColor: "#FFF",
   },
   {
     color1: "#000",
@@ -14,7 +14,7 @@ export const theme = [
     color3:
       "linear-gradient(90deg, rgba(227,227,227,1) 5%, rgba(122,107,16,1) 74%)",
     color4: "#000",
-    textColor: "#000",
+    textColor: "#FFF",
   },
   {
     color1: "FFF",

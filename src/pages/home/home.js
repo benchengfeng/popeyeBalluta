@@ -14,7 +14,8 @@ const Home = () => {
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
   const [step, setStep] = useState(0);
-  const [game, setGame] = useState(false);
+  const [gameQuick, setGameQuick] = useState(false);
+  const [gameSlow, setGameSlow] = useState(false);
 
   const [themeId, setThemeId] = useState(0);
   const [lunch, setLunch] = useState();
@@ -33,7 +34,6 @@ const Home = () => {
       setConnectionSocket(socket);
     }
   }, []);
-  
 
   useEffect(() => {
     if (connectionSocket) {
@@ -52,24 +52,23 @@ const Home = () => {
         }
       });
     }
-  }, [connection,step]);
+  }, [connection, step]);
 
   // ***************** //
 
   useEffect(() => {
-    if (lunchState?.coordinates.length>0) {
+    if (lunchState?.coordinates.length > 0) {
       setLunch(lunchState);
-      setLunchWsLocation(lunchState.coordinates[0])
-      console.log('lunchState[0]',lunchState.coordinates[0])
-
+      setLunchWsLocation(lunchState.coordinates[0]);
+      console.log("lunchState[0]", lunchState.coordinates[0]);
     }
   }, [lunchState]);
 
   useEffect(() => {
-    if (villageState?.coordinates.length>0) {
+    if (villageState?.coordinates.length > 0) {
       setVillage(villageState);
-      console.log('villageState[0]',villageState.coordinates[0])
-      setVillageWsLocation(villageState.coordinates[0])
+      console.log("villageState[0]", villageState.coordinates[0]);
+      setVillageWsLocation(villageState.coordinates[0]);
     }
   }, [villageState]);
 
@@ -79,8 +78,8 @@ const Home = () => {
     }
   }, []);
 
-  const handleStart = async () => {
-    setGame(true);
+  const handleStartQuick = async () => {
+    setGameQuick(true);
 
     if (village?.coordinates) {
       setTimeout(() => {
@@ -91,8 +90,26 @@ const Home = () => {
     }
   };
 
+  const handleStartSlow = async () => {
+    setGameSlow(true);
+
+    if (village?.coordinates) {
+      setTimeout(() => {
+        connectionSocket.send(step);
+        setStep(step + 1);
+        console.log("step home ", step);
+      }, 10000);
+    }
+  };
+
+  const handleStop = async () => {
+    setGameSlow(false);
+    setGameQuick(false);
+  };
+
   useEffect(() => {
-    if (game) handleStart();
+    if (gameQuick) handleStartQuick();
+    if (gameSlow) handleStartSlow();
   }, [step]);
 
   const handleTheme = (e) => {
@@ -118,16 +135,28 @@ const Home = () => {
                 <h3>Back</h3>
               </div>
             </Link>
-            {game ? (
-              <div className="btn-square" onClick={() => setGame(false)}>
+            <div className="btn-square">
+              <h3>Home</h3>
+            </div>
+          </div>
+
+          {gameQuick || gameSlow ? (
+            <div className="container-btn-square">
+              <div className="btn-square" onClick={() => handleStop()}>
                 <h3>Stop</h3>
               </div>
-            ) : (
-              <div className="btn-square" onClick={() => handleStart()}>
-                <h1>Start</h1>
+            </div>
+          ) : (
+            <div className="container-btn-square">
+              <div className="btn-square" onClick={() => handleStartQuick()}>
+                <h1>Start 1.5 sec</h1>
               </div>
-            )}
-          </div>
+              <div className="btn-square" onClick={() => handleStartSlow()}>
+                <h1>Start 10 sec</h1>
+              </div>
+            </div>
+          )}
+
           <div className="">
             <h1>Home</h1>
             <div
@@ -171,9 +200,13 @@ const Home = () => {
               full Screen
             </div> */}
           </div>
-          {lunchWsLocation.length>0 && villageWsLocation.length>0 ? (
+          {lunchWsLocation.length > 0 && villageWsLocation.length > 0 ? (
             <div>
-              <MapComponent lunch={lunchWsLocation} village={villageWsLocation} step={step} />
+              <MapComponent
+                lunch={lunchWsLocation}
+                village={villageWsLocation}
+                step={step}
+              />
             </div>
           ) : (
             <div>loading ...</div>
