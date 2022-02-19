@@ -9,10 +9,9 @@ import Axios  from "axios";
 
 
 function App() {
+
   const dispatch = useDispatch();
 
-  const [lunch, setLunch] = useState([]);
-  const [village, setVillage] = useState([]);
   const [connection, setConnection] = useState(false);
   const [connectionSocket, setConnectionSocket] = useState(null);
   
@@ -20,9 +19,7 @@ function App() {
   // setting data received from server webSocket //
 
 
-
   useEffect(()=>{
-
 
     if (connection=== false){
    const socket = new WebSocket("ws://localhost:8000");
@@ -38,19 +35,18 @@ function App() {
     connectionSocket.addEventListener("message", function (event) {
       const data = eval(event.data);
       if (data[0] === "lunch") {
-        setLunch(data[1]);
+        dispatch(setLunchState(data[1]))
+        // setLunch(data[1]);
       }
       if (data[0] === "village") {
-        setVillage(data[1]);
+        dispatch(setVillageState(data[1]))
+        // setVillage(data[1]);
       }
       storeInDatabase()
     });
   }
 
   },[connection])
-
-
-
 
 
   const storeInDatabase = async ()=>{
@@ -65,18 +61,6 @@ function App() {
 
   // ******************* //
   
-
-  // Storing in redux ***** //
-
-  useEffect(() => {
-    if (lunch !== null) dispatch(setLunchState(lunch));
-  }, [lunch]);
-
-  useEffect(() => {
-    if (village !== null) dispatch(setVillageState(village));
-  }, [village]);
-
-  // ******************* //
 
   return (
     <Provider store={store}>

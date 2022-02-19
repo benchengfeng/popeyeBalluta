@@ -1,6 +1,4 @@
-import Axios from "axios";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -28,65 +26,37 @@ L.Icon.Default.mergeOptions({
 // });
 
 const MapComponent = ({ lunch, village, step}) => {
+
+
   const [popeye, setPopeye] = useState([]);
-  const [positionVillage, setPositionVillage] = useState([]);
-  const [positionLunch, setPositionLunch] = useState([]);
-  // const [step, setStep] = useState(0);
+  const [positionVillage, setPositionVillage] = useState(village);
+  const [positionLunch, setPositionLunch] = useState(lunch);
 
-  // const [positionLunch, setPositionLunch] = useState([]);
 
-  useEffect(() => {
-    if (lunch)
-      // setLunch([...lunch.coordinates]);
-      console.log("lucnh from map", lunch);
-  }, [lunch]);
 
   useEffect(() => {
-    if (lunch?.coordinates.length > 0)
-      // setVillage(villageState);
-      console.log("lucnh from map", lunch);
-  }, [village]);
-
-  useEffect(() => {
-    if (village.coordinates?.length > 0) {
-      setPositionVillage(village.coordinates[0]);
-      console.log("map position Village", village.coordinates[0]);
+    if (village?.length > 0) {
+      setPositionVillage(village);
+      console.log("map position Village", positionVillage);
 
     }
 
-  }, [village]);
+  }, [village,step]);
 
   useEffect(() => {
-    if (lunch.coordinates?.length > 0) {
-      setPositionLunch(lunch.coordinates[0]);
-      console.log("map position lunch", lunch.coordinates[0]);
+    if (lunch?.length > 0) {
+      setPositionLunch(lunch);
+      console.log("map position lunch", positionLunch);
     }
-  }, [village]);
+  }, [lunch,step]);
 
-  useEffect(() => {
-    if (village.coordinates?.length > 0) {
-    setPositionVillage(village.coordinates[step]);
-    }
-  }, [step]);
-
-  // const handleStep = (e) => {
-  //   if(step < 115)
-  //   setStep(step + 1);
-  //   console.log("step map ", step);
-  // };
 
   return (
     <>
-      {positionVillage.length > 0 && positionLunch.length > 0 ? (
+  
         <div>
           {" "}
-          {/* <div
-            className="btn-banner"
-            id="theme1"
-            onClick={(e) => handleStep}
-          >
-            next
-          </div> */}
+          {lunch.length>0 && village.length>0 &&
           <MapContainer
             center={positionVillage}
             zoom={20}
@@ -109,10 +79,9 @@ const MapComponent = ({ lunch, village, step}) => {
               </Popup>
             </Marker>
           </MapContainer>
+}
         </div>
-      ) : (
-        <div>loading ...</div>
-      )}
+
     </>
   );
 };

@@ -19,58 +19,63 @@ const Home = () => {
   const [themeId, setThemeId] = useState(0);
   const [lunch, setLunch] = useState();
   const [village, setVillage] = useState();
+  const [lunchWsLocation, setLunchWsLocation] = useState([]);
+  const [villageWsLocation, setVillageWsLocation] = useState([]);
   const [connection, setConnection] = useState(false);
   const [connectionSocket, setConnectionSocket] = useState(null);
 
   // setting data received from server webSocket //
 
-  // useEffect(()=>{
+  useEffect(() => {
+    if (connection === false) {
+      const socket = new WebSocket("ws://localhost:8000");
+      setConnection(true);
+      setConnectionSocket(socket);
+    }
+  }, []);
+  
 
-  //   if (connection=== false){
-  //  const socket = new WebSocket("ws://localhost:8000");
-  //   setConnection(true)
-  //   setConnectionSocket(socket)
-  //   }
-  // },[])
+  useEffect(() => {
+    if (connectionSocket) {
+      connectionSocket.addEventListener("message", function (event) {
+        const data = eval(event.data);
 
-  // useEffect(()=>{
-
-  //   if (connectionSocket){
-  //   connectionSocket.addEventListener("message", function (event) {
-  //     const data = eval(event.data);
-  //     if (data[0] === "lunch") {
-  //       setLunch(data[1]);
-  //     }
-  //     if (data[0] === "village") {
-  //       setVillage(data[1]);
-  //     }
-  //     storeInDatabase()
-  //   });
-  // }
-
-  // },[connection])
+        if (data[0] === "lunchLocation") {
+          let arrayFix = data[1].reverse();
+          setLunchWsLocation(arrayFix);
+          console.log("home socket lunch location", lunchWsLocation);
+        }
+        if (data[0] === "villageLocation") {
+          let arrayFix = data[1].reverse();
+          setVillageWsLocation(arrayFix);
+          console.log("home socket village location", villageWsLocation);
+        }
+      });
+    }
+  }, [connection,step]);
 
   // ***************** //
 
   useEffect(() => {
-    if (lunchState) {
+    if (lunchState?.coordinates.length>0) {
       setLunch(lunchState);
-      console.log("lucnhstate from home", lunchState);
+      setLunchWsLocation(lunchState.coordinates[0])
+      console.log('lunchState[0]',lunchState.coordinates[0])
+
     }
   }, [lunchState]);
 
   useEffect(() => {
-    if (villageState) {
+    if (villageState?.coordinates.length>0) {
       setVillage(villageState);
+      console.log('villageState[0]',villageState.coordinates[0])
+      setVillageWsLocation(villageState.coordinates[0])
     }
   }, [villageState]);
-
-  console.log("village state from home", village);
 
   useEffect(() => {
     if (themeState) {
       setThemeId(themeState.activeId);
-      console.log("theme state", themeState.activeId);
     }
   }, []);
 
@@ -79,23 +84,12 @@ const Home = () => {
 
     if (village?.coordinates) {
       setTimeout(() => {
+        connectionSocket.send(step);
         setStep(step + 1);
         console.log("step home ", step);
       }, 1500);
     }
   };
-
-  // const handleOneStep = async ()=> {
-
-  //   if(step < 115)
-  // setTimeout(() => {
-
-  //   setStep(step + 1);
-  //   console.log("step home ", step);
-
-  // }, 1500);
-
-  // }
 
   useEffect(() => {
     if (game) handleStart();
@@ -124,16 +118,15 @@ const Home = () => {
                 <h3>Back</h3>
               </div>
             </Link>
-              {game ? (
-                <div className="btn-square" onClick={() => setGame(false)}>
-                  <h3>Stop</h3>
-                </div>
-              ) : (
-                <div className="btn-square" onClick={() => handleStart()}>
-                  <h1>Start</h1>
-                </div>
-              )}
-            
+            {game ? (
+              <div className="btn-square" onClick={() => setGame(false)}>
+                <h3>Stop</h3>
+              </div>
+            ) : (
+              <div className="btn-square" onClick={() => handleStart()}>
+                <h1>Start</h1>
+              </div>
+            )}
           </div>
           <div className="">
             <h1>Home</h1>
@@ -178,9 +171,9 @@ const Home = () => {
               full Screen
             </div> */}
           </div>
-          {lunch && village ? (
+          {lunchWsLocation.length>0 && villageWsLocation.length>0 ? (
             <div>
-              <MapComponent lunch={lunch} village={village} step={step} />
+              <MapComponent lunch={lunchWsLocation} village={villageWsLocation} step={step} />
             </div>
           ) : (
             <div>loading ...</div>
