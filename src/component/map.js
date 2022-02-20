@@ -25,12 +25,13 @@ L.Icon.Default.mergeOptions({
 //   popupAnchor: [-3, -76]
 // });
 
-const MapComponent = ({ lunch, village, step}) => {
+const MapComponent = ({ lunch, village, backHome, step, journey}) => {
 
 
   const [popeye, setPopeye] = useState([]);
   const [positionVillage, setPositionVillage] = useState(village);
   const [positionLunch, setPositionLunch] = useState(lunch);
+  const [position, setPosition]=useState([0.1,0.1])
 
 
 
@@ -41,14 +42,26 @@ const MapComponent = ({ lunch, village, step}) => {
 
     }
 
-  }, [village,step]);
+  }, [village]);
 
   useEffect(() => {
     if (lunch?.length > 0) {
       setPositionLunch(lunch);
       console.log("map position lunch", positionLunch);
     }
-  }, [lunch,step]);
+  }, [lunch]);
+
+  useEffect(() => {
+    if (journey==="lunch") {
+      setPosition(lunch);
+    }
+    if (journey==="work") {
+      setPosition(village);
+    }
+    if (journey==="home") {
+      setPosition(backHome);
+    }
+  }, [lunch,village,backHome]);
 
 
   return (
@@ -58,8 +71,8 @@ const MapComponent = ({ lunch, village, step}) => {
           {" "}
           {lunch.length>0 && village.length>0 &&
           <MapContainer
-            center={positionVillage}
-            zoom={20}
+            center={positionLunch}
+            zoom={12}
             style={{ height: "440px", marginTop: "80px", marginBottom: "90px" }}
           >
             <TileLayer
@@ -67,7 +80,7 @@ const MapComponent = ({ lunch, village, step}) => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker position={positionVillage}>
+            <Marker position={position}>
               <Popup>
                 <p className="place-name">{"[place.venue.name]"}</p>
                 <p className="place-address">
