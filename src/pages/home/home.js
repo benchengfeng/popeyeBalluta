@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import MapComponent from "../../component/map";
+import ProgressBar from "../../component/progressBar";
 import { setThemeState } from "../../redux/slices/themeSlice";
 import { theme } from "../../util/theme";
 import StyledHome from "./StyledHome";
@@ -134,9 +135,12 @@ const Home = () => {
     setGame(false);
   };
 
-  const handleRestart = async () => {
-    setGame(false);
-    setStep(0);
+  const handleRestart = async (e) => {
+    setLunchWsLocation(lunchState.coordinates[0])
+    setVillageWsLocation(villageState.coordinates[0]);
+    setBackHomeWsLocation(backHome[0]);
+     setStep(0);
+     setGame(false);
   };
 
   useEffect(() => {
@@ -148,7 +152,7 @@ const Home = () => {
       if (game) handleStart();
     } else {
       setGame(false);
-      setStep(0)
+      setStep(0);
     }
   }, [step]);
 
@@ -162,57 +166,38 @@ const Home = () => {
   return (
     <ThemeProvider theme={theme[themeId]}>
       <StyledHome>
-        <div className="container-all">
-          <div className="container-btn-square">
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <div className="btn-square">
-                <h3>Back</h3>
+        <div className="container-page">
+          <div className="container-all-left">
+            <div className="container-btn-square">
+              <div className="btn-square" id="work" onClick={handleJourney}>
+                {journey === "work" ? (
+                  <h3 style={{ color: "red" }}>Village To Work</h3>
+                ) : (
+                  <h3 id="work" onClick={handleJourney}>
+                    Village To Work
+                  </h3>
+                )}
               </div>
-            </Link>
-            {game ? (
-              <div className="btn-square" onClick={handleStop}>
-                <h3 onClick={handleStop}>Stop</h3>
+              <div className="btn-square" id="lunch" onClick={handleJourney}>
+                {journey === "lunch" ? (
+                  <h3 style={{ color: "red" }}>Going for Lunch</h3>
+                ) : (
+                  <h3 id="lunch" onClick={handleJourney}>
+                    Going for Lunch
+                  </h3>
+                )}
               </div>
-            ) : (
-              <div className="btn-square" onClick={handleStart}>
-                <h3 onClick={handleStart}>start</h3>
-              </div>
-            )}
-            <div className="btn-square" onClick={handleRestart}>
-              <h3 onClick={handleRestart} >Reset</h3>
-            </div>
-          </div>
-          <div className="container-btn-square">
-            <div className="btn-square" id="work" onClick={handleJourney}>
-              {journey === "work" ? (
-                <h3 style={{ color: "red" }}>Village To Work</h3>
-              ) : (
-                <h3 id="work" onClick={handleJourney}>
-                  Village To Work
-                </h3>
-              )}
-            </div>
-            <div className="btn-square" id="lunch" onClick={handleJourney}>
-              {journey === "lunch" ? (
-                <h3 style={{ color: "red" }}>Going for Lunch</h3>
-              ) : (
-                <h3 id="lunch" onClick={handleJourney}>
-                  Going for Lunch
-                </h3>
-              )}
-            </div>
 
-            <div className="btn-square" id="home" onClick={handleJourney}>
-              {journey === "home" ? (
-                <h3 style={{ color: "red" }}>Back Home</h3>
-              ) : (
-                <h3 id="home" onClick={handleJourney}>
-                  Back Home
-                </h3>
-              )}
+              <div className="btn-square" id="home" onClick={handleJourney}>
+                {journey === "home" ? (
+                  <h3 style={{ color: "red" }}>Back Home</h3>
+                ) : (
+                  <h3 id="home" onClick={handleJourney}>
+                    Back Home
+                  </h3>
+                )}
+              </div>
             </div>
-          </div>
-
 
             <div className="container-btn-square">
               <div className="btn-square" id="fast" onClick={handlePace}>
@@ -235,44 +220,50 @@ const Home = () => {
               </div>
             </div>
 
-
-          <div className="">
-            <h1>Home</h1>
-            <div
-              className="btn-banner"
-              id="theme1"
-              onClick={(e) => handleTheme(e)}
-            >
-              Theme 1
-            </div>
-            <div
-              className="btn-banner"
-              id="theme2"
-              onClick={(e) => handleTheme(e)}
-            >
-              Theme 2
-            </div>
-            {/* <div
+            <div className="">
+              <div
+                className="btn-banner"
+                id="theme1"
+                onClick={(e) => handleTheme(e)}
+              >
+                Theme 1
+              </div>
+              <div
+                className="btn-banner"
+                id="theme2"
+                onClick={(e) => handleTheme(e)}
+              >
+                Theme 2
+              </div>
+              {/* <div
               className="btn-banner"
               id="theme3"
               onClick={(e) => handleTheme(e)}
             >
               Theme 3
             </div> */}
-          </div>
-          {lunchWsLocation.length > 0 && villageWsLocation.length > 0 ? (
-            <div>
-              <MapComponent
-                lunch={lunchWsLocation}
-                village={villageWsLocation}
-                step={step}
-                journey={journey}
-                backHome={backHomLocation}
-              />
             </div>
-          ) : (
-            <div>loading ...</div>
-          )}
+            {lunchWsLocation.length > 0 && villageWsLocation.length > 0 ? (
+              <div>
+                <MapComponent
+                  lunch={lunchWsLocation}
+                  village={villageWsLocation}
+                  step={step}
+                  journey={journey}
+                  backHome={backHomLocation}
+                  game={game}
+                  handleRestart={handleRestart}
+                  handleStart={handleStart}
+                  handleStop={handleStop}
+                />
+              </div>
+            ) : (
+              <div>loading ...</div>
+            )}
+          </div>
+          <div className="container-all-right">
+            <ProgressBar></ProgressBar>
+          </div>
         </div>
       </StyledHome>
     </ThemeProvider>

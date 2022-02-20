@@ -7,17 +7,26 @@ const StyledHome = styled.form`
   background:${props => props.theme.color1};
 
 
+  .container-page{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
   .wrapper-input-options {
     margin-bottom: 6px;
     position: relative;
     svg {
       position: absolute;
       right: 6px;
-      cursor: pointer;
+      cursor: move;
       height: 20px;
       top: 8px;
       width: 20px;
     }
+  }
+
+  button:hover{
+    cursor:move;
   }
 
 
@@ -32,8 +41,7 @@ const StyledHome = styled.form`
     background:${props => props.theme.color1};
     height: 48px;
     padding: 12px;
-    cursor: pointer;
-    margin-bottom: 24px;
+    cursor: move;
     font-size: 16px;
 }
 
@@ -48,7 +56,7 @@ const StyledHome = styled.form`
     border-radius: 20px;
     height: 48px;
     padding: 12px;
-    cursor: pointer;
+    cursor: move;
     margin-bottom: 24px;
     font-size: 16px;
   }
@@ -71,24 +79,24 @@ const StyledHome = styled.form`
   .btn-banner:hover {
     box-shadow: 0 0px 10px rgba(112,112,112,0.5);
     transition: 400ms;
-    border :20px solid #080808;
+    border :10px solid #080808;
 }
 .btn-landing:hover {
   box-shadow: 0 0px 10px rgba(112,112,112,0.5);
   transition: 400ms;
-  border :20px solid #080808;
+  border :10px solid #080808;
 }
 
 .container-btn-square:hover {
   box-shadow: 0 0px 10px rgba(112,112,112,0.5);
   transition: 400ms;
-  border :20px solid #080808;
+  border :10px solid #080808;
 }
 
 .btn-square:hover{
   box-shadow: 0 0px 10px rgba(112,112,112,0.5);
   transition: 400ms;
-  border :20px solid #080808;
+  border :10px solid #080808;
 }
 
 .btn-square{
@@ -104,7 +112,7 @@ const StyledHome = styled.form`
   height: 48px;
   padding: 12px;
   margin: 10px;
-  cursor: pointer;
+  cursor: move;
   margin-bottom: 24px;
   font-size: 16px;
 }
@@ -128,6 +136,21 @@ const StyledHome = styled.form`
     display: flex;
     flex-direction: column;
   }
+
+  .container-all-left {
+    width: 60%;
+    max-width: 1056px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container-all-right {
+    width: 40%;
+    max-width: 1056px;
+    display: flex;
+    flex-direction: column;
+  }
+
   .container-btn {
     display: flex;
     justify-content: center;
@@ -152,7 +175,7 @@ const StyledHome = styled.form`
     text-align: center;
     color: ${props => (props.theme.color3)};
     outline: none;
-    cursor: pointer;
+    cursor: move;
     margin-right: 12px;
 
     &:focus {
