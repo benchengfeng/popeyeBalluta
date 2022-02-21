@@ -1,18 +1,19 @@
 version: "3"
 
 services:
-  api:
-    build: ./popeyeBalluta/backend
+  backend:
+    build: ./backend
     ports:
       - "8080:8080"
     depends_on:
       - db
+
     container_name: popeye-back
 
-  client:
-    build: ./popeyeBalluta/frontend
+  frontend:
+    build: ./frontend
     ports:
-      - "80:80"
+      - "3001:3001"
     container_name: popeye-front
 
   db:

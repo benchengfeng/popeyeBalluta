@@ -4,14 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon index.js"
-  },
+    "nodemon": "nodemon index.js",
+    "build": "webpack",
+    "start":"nodemon index.js"
+    },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "mongoose": "^6.2.1",
+    "webpack": "^5.69.1",
     "websocket": "^1.0.34",
     "ws": "^8.5.0"
   },
