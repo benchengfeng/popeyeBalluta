@@ -1,13 +1,10 @@
 FROM node:12-alpine as builder
 
 WORKDIR /app
+RUN apk --no-cache add --virtual builds-deps build-base python3
 COPY package.json /app/package.json
 RUN npm install
 COPY . /app
-RUN npm run build
 
-FROM nginx:1.16.0-alpine
-COPY --from=builder /app/build /usr/share/nginx/html
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3001
+CMD ["npm", "start"]
