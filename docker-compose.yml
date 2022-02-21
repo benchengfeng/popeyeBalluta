@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  api:
+    build: ./popeyeBalluta/backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    container_name: popeye-back
+
+  client:
+    build: ./popeyeBalluta/frontend
+    ports:
+      - "80:80"
+    container_name: popeye-front
+
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: popeye-db
