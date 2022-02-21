@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import MapComponent from "../../component/map";
 import ProgressBar from "../../component/progressBar";
+import Side from "../../component/side";
 import { setThemeState } from "../../redux/slices/themeSlice";
 import { theme } from "../../util/theme";
 import StyledHome from "./StyledHome";
@@ -23,11 +24,12 @@ const Home = () => {
   const [backHome, setBackHome] = useState();
   const [lunchWsLocation, setLunchWsLocation] = useState([]);
   const [villageWsLocation, setVillageWsLocation] = useState([]);
-  const [backHomLocation, setBackHomeWsLocation] = useState([]);
+  const [backHomeLocation, setBackHomeLocation] = useState([]);
   const [connection, setConnection] = useState(false);
   const [connectionSocket, setConnectionSocket] = useState(null);
   const [journey, setJourney] = useState();
-  const [pace, setPace] = useState();
+  const [pace, setPace] = useState("fast");
+  const [length, setLength] = useState(0);
 
   // setting data received from server webSocket //
 
@@ -45,14 +47,18 @@ const Home = () => {
         const data = eval(event.data);
 
         if (data[0] === "lunchLocation") {
-          let arrayFix = data[1].reverse();
-          setLunchWsLocation(arrayFix);
-          console.log("home socket lunch location", lunchWsLocation);
+          if (data[1]?.length > 0) {
+            let arrayFix = data[1].reverse();
+            setLunchWsLocation(arrayFix);
+            console.log("home socket lunch location", lunchWsLocation);
+          }
         }
         if (data[0] === "villageLocation") {
-          let arrayFix = data[1].reverse();
-          setVillageWsLocation(arrayFix);
-          console.log("home socket village location", villageWsLocation);
+          if (data[1]?.length > 0) {
+            let arrayFix = data[1].reverse();
+            setVillageWsLocation(arrayFix);
+            console.log("home socket village location", villageWsLocation);
+          }
         }
       });
     }
@@ -116,9 +122,8 @@ const Home = () => {
 
     if (journey === "home") {
       setTimeout(() => {
-        setBackHomeWsLocation(backHome[step]);
+        setBackHomeLocation(backHome[step]);
         setStep(step + 1);
-        console.log("step home ", step);
       }, timing);
     }
 
@@ -136,11 +141,11 @@ const Home = () => {
   };
 
   const handleRestart = async (e) => {
-    setLunchWsLocation(lunchState.coordinates[0])
+    setLunchWsLocation(lunchState.coordinates[0]);
     setVillageWsLocation(villageState.coordinates[0]);
-    setBackHomeWsLocation(backHome[0]);
-     setStep(0);
-     setGame(false);
+    setBackHomeLocation(backHome[0]);
+    setStep(0);
+    setGame(false);
   };
 
   useEffect(() => {
@@ -163,6 +168,18 @@ const Home = () => {
     setPace(e.target.id);
   };
 
+  const handleSlider = (e) => {
+    setStep(e.target.value);
+    setGame(false);
+    if (journey === "home" || journey === "work") {
+      setVillageWsLocation(villageState.coordinates[e.target.value]);
+      setBackHomeLocation(backHome[e.target.value]);
+    }
+    if (journey === "lunch") {
+      setLunchWsLocation(lunchState.coordinates[e.target.value]);
+    }
+  };
+
   return (
     <ThemeProvider theme={theme[themeId]}>
       <StyledHome>
@@ -171,7 +188,9 @@ const Home = () => {
             <div className="container-btn-square">
               <div className="btn-square" id="work" onClick={handleJourney}>
                 {journey === "work" ? (
-                  <h3 style={{ color: "red" }}>Village To Work</h3>
+                  <h3 style={{ color: theme[themeId].colorSelect }}>
+                    Village To Work
+                  </h3>
                 ) : (
                   <h3 id="work" onClick={handleJourney}>
                     Village To Work
@@ -180,7 +199,9 @@ const Home = () => {
               </div>
               <div className="btn-square" id="lunch" onClick={handleJourney}>
                 {journey === "lunch" ? (
-                  <h3 style={{ color: "red" }}>Going for Lunch</h3>
+                  <h3 style={{ color: theme[themeId].colorSelect }}>
+                    Going for Lunch
+                  </h3>
                 ) : (
                   <h3 id="lunch" onClick={handleJourney}>
                     Going for Lunch
@@ -190,7 +211,9 @@ const Home = () => {
 
               <div className="btn-square" id="home" onClick={handleJourney}>
                 {journey === "home" ? (
-                  <h3 style={{ color: "red" }}>Back Home</h3>
+                  <h3 style={{ color: theme[themeId].colorSelect }}>
+                    Back Home
+                  </h3>
                 ) : (
                   <h3 id="home" onClick={handleJourney}>
                     Back Home
@@ -202,7 +225,7 @@ const Home = () => {
             <div className="container-btn-square">
               <div className="btn-square" id="fast" onClick={handlePace}>
                 {pace === "fast" ? (
-                  <h3 style={{ color: "red" }}>1.5 sec</h3>
+                  <h3 style={{ color: theme[themeId].colorSelect }}>1.5 sec</h3>
                 ) : (
                   <h3 id="fast" onClick={handlePace}>
                     1.5 sec
@@ -211,7 +234,7 @@ const Home = () => {
               </div>
               <div className="btn-square" id="slow" onClick={handlePace}>
                 {pace === "slow" ? (
-                  <h3 style={{ color: "red" }}>10 sec</h3>
+                  <h3 style={{ color: theme[themeId].colorSelect }}>10 sec</h3>
                 ) : (
                   <h3 id="slow" onClick={handlePace}>
                     10 sec
@@ -220,7 +243,7 @@ const Home = () => {
               </div>
             </div>
 
-            <div className="">
+            <div className="container-buttons">
               <div
                 className="btn-banner"
                 id="theme1"
@@ -235,13 +258,22 @@ const Home = () => {
               >
                 Theme 2
               </div>
-              {/* <div
-              className="btn-banner"
-              id="theme3"
-              onClick={(e) => handleTheme(e)}
-            >
-              Theme 3
-            </div> */}
+              <div
+                className="btn-banner"
+                id="theme3"
+                onClick={(e) => handleTheme(e)}
+              >
+                Theme 3
+              </div>
+
+              <ProgressBar
+                handleSlider={handleSlider}
+                step={step}
+                length={length}
+                journey={journey}
+                game={game}
+                pace={pace}
+              />
             </div>
             {lunchWsLocation.length > 0 && villageWsLocation.length > 0 ? (
               <div>
@@ -250,11 +282,13 @@ const Home = () => {
                   village={villageWsLocation}
                   step={step}
                   journey={journey}
-                  backHome={backHomLocation}
+                  backHome={backHomeLocation}
                   game={game}
                   handleRestart={handleRestart}
                   handleStart={handleStart}
                   handleStop={handleStop}
+                  theme={theme}
+                  pace={pace}
                 />
               </div>
             ) : (
@@ -262,7 +296,12 @@ const Home = () => {
             )}
           </div>
           <div className="container-all-right">
-            <ProgressBar></ProgressBar>
+            <Side
+              handleSlider={handleSlider}
+              step={step}
+              length={length}
+              journey={journey}
+            />
           </div>
         </div>
       </StyledHome>

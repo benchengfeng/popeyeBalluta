@@ -67,6 +67,7 @@ const StyledHome = styled.form`
     border: 2px solid #080808;
     border-radius: 20px;
     padding-top: 20px;
+    color:${props => props.theme.color2};
     align-content:center;
     min-height:150px;
     max-width: 1056px;
@@ -102,7 +103,7 @@ const StyledHome = styled.form`
 .btn-square{
   position: relative;
   border: 2px solid #080808;
-  color : ${props => props.theme.textColor};
+  color : ${props => props.theme.textColor}!important;
   width: 190px;
   display: flex;
   align-items: center;

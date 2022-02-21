@@ -20,11 +20,11 @@ export const theme = [
 
   },
   {
-    color1: "FFF",
-    color2: "FFF",
+    color1: "#FFF",
+    color2: "#FFF",
     color3: "#000",
     color4: "#000",
-    textColor: "#000",
+    textColor: "#FFF",
     colorSelect: 'green'
 
   },

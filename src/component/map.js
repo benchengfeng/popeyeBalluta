@@ -10,16 +10,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-
-var markerIcon = L.icon({
-  iconUrl: 'https://cdn.filestackcontent.com/Il58ulSQ0SqH7YuoG3no',
-
-  iconSize:     [18, 75], // size of the icon
-  shadowSize:   [0, 0], // size of the shadow
-  iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
-  shadowAnchor: [4, 62],  // the same for the shadow
-  popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-});
+import { theme } from "../util/theme";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -31,16 +22,41 @@ L.Icon.Default.mergeOptions({
 
 
 
-const MapComponent = ({ lunch, village, backHome, step, journey , game, handleRestart, handleStart, handleStop}) => {
+const MapComponent = ({ lunch, village, backHome, step, journey , game, handleRestart, handleStart, handleStop,themeId,pace}) => {
   const [popeye, setPopeye] = useState([]);
   const [positionVillage, setPositionVillage] = useState(village);
   const [positionLunch, setPositionLunch] = useState(lunch);
   const [position, setPosition] = useState([0.1, 0.1]);
+  const [tripIcon, setTripIcon] = useState("https://cdn.filestackcontent.com/Il58ulSQ0SqH7YuoG3no");
+  const [tripIconSize, setTripIconSize] = useState([0,0]);
+
 
   const animateRef = useRef(false);
 
-  function SetViewOnClick({ animateRef, position }) {
+  useEffect(()=>{
+if ( journey==="home" || journey==="work"){
+  setTripIcon("https://cdn.filestackcontent.com/npQv8efxRDusdhV8bVs9")
+  setTripIconSize([100,100])
+}
+if ( journey==="lunch"){
+  setTripIcon("https://cdn.filestackcontent.com/Il58ulSQ0SqH7YuoG3no")
+  setTripIconSize([18,75])
+}
+  },[journey])
+
+  var markerIcon = L.icon({
+    iconUrl: tripIcon,
   
+    iconSize:     tripIconSize, // size of the icon
+    shadowSize:   [0, 0], // size of the shadow
+    iconAnchor:   [0, 0], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  });
+
+  function SetViewOnClick({ animateRef, position }) {
+  let timer = 1000
+  if ( pace==="slow")timer=9000
     const map = useMap();
     map.setView(position, map.getZoom(), {
       animate: animateRef.current || false,
@@ -48,9 +64,10 @@ const MapComponent = ({ lunch, village, backHome, step, journey , game, handleRe
     const markerPoint = L.marker(position, {icon: markerIcon})
     markerPoint.addTo(map);
     
+    
     setTimeout(()=>{
       map.removeLayer(markerPoint)
-    },1000)
+    },timer)
   
     return null;
   }
@@ -107,7 +124,7 @@ const MapComponent = ({ lunch, village, backHome, step, journey , game, handleRe
         {lunch.length > 0 && village.length > 0 && (
           <MapContainer
             center={positionLunch}
-            zoom={19}
+            zoom={16}
             style={{ height: "440px", marginTop: "80px", marginBottom: "90px" }}
           >
             <TileLayer
