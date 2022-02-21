@@ -11,6 +11,7 @@ import {
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { theme } from "../util/theme";
+import { Link } from "react-router-dom";
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -110,9 +111,11 @@ if ( journey==="lunch"){
         {" "}
         <div className="">
         <div className="container-btn-square">
+          <Link to="/" style={{textDecoration:"none"}}>
                 <div className="btn-square">
                   <h3>Back</h3>
                 </div>
+                </Link>
               {game ? (
                 <div className="btn-square" onClick={handleStop}>
                   <h3 onClick={handleStop}>Stop</h3>
