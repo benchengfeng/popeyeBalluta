@@ -1,31 +1,93 @@
 export const theme = [
   {
-    color1:
-      "linear-gradient(90deg, rgba(130,130,130,1) 5%, rgba(213,212,204,1) 74%)",
-    color2:
-      "linear-gradient(90deg, rgba(113,113,113,1) 0%, rgba(171,170,166,1) 18%, rgba(185,27,27,1) 46%, rgba(213,212,204,1) 88%)",
-    color3: "#000",
-    color4: "#000",
-    textColor: "#FFF",
-    colorSelect: 'red'
-  },
-  {
     color1: "#000",
     color2: "#000",
-    color3:
-      "linear-gradient(90deg, rgba(227,227,227,1) 5%, rgba(122,107,16,1) 74%)",
-    color4: "#000",
+    color3: "#a70000",
+    color4: "gold",
+    color5: "#907163",
     textColor: "#FFF",
-    colorSelect: 'blue'
-
+    colorSelect: "gold",
   },
   {
-    color1: "#FFF",
-    color2: "#FFF",
-    color3: "#000",
-    color4: "#000",
+    color1: "#0C0032",
+    color2: "#19061",
+    color3: "#240090",
+    color4: "#3500D3",
+    color5: "#282828",
     textColor: "#FFF",
-    colorSelect: 'green'
-
+    colorSelect: "#41B3A3",
   },
+  {
+    color1: "#E27D60",
+    color2: "#E8A87C",
+    color3: "#85DCBA",
+    color4: "#C38D9E",
+    color5: "#41B3A3",
+    textColor: "#FFF",
+    colorSelect: "#41B3A3",
+  },
+  // {
+  //   color1: "#05386B",
+  //   color2: "#379683",
+  //   color3: "#5CDB95",
+  //   color4: "#8EE4AF",
+  //   color5: "#EDF5E1",
+  //   textColor: "#FFF",
+  //   colorSelect: "#41B3A3",
+  // },
+  {
+    color1: "#1A1A1D",
+    color2: "#4E4E50",
+    color3: "#6F2232",
+    color4: "#950740",
+    color5: "#C3073F",
+    textColor: "#FFF",
+    colorSelect: "#41B3A3",
+  },
+  {
+    color1: "#D79922",
+    color2: "#EFE2BA",
+    color3: "#F13C20",
+    color4: "#4056A1",
+    color5: "#C5CBE3",
+    textColor: "#FFF",
+    colorSelect: "#41B3A3",
+  },
+  {
+    color1: "#272727",
+    color2: "#747474",
+    color3: "#FF652F",
+    color4: "#FFE400",
+    color5: "#14A76C",
+    textColor: "#FFF",
+    colorSelect: "#41B3A3",
+  },
+  {
+    color1: "#EAE7DC",
+    color2: "#D8C3A5",
+    color3: "#8E8D8A",
+    color4: "#E98074",
+    color5: "#E85A4F",
+    textColor: "#FFF",
+    colorSelect: "#41B3A3",
+  },
+  {
+    color1: "#61892F",
+    color2: "#86C232",
+    color3: "#222629",
+    color4: "#474B4F",
+    color5: "#6B6E70",
+    textColor: "#FFF",
+    colorSelect: "#41B3A3",
+  },
+  // {
+  //   color1: "#19181A",
+  //   color2: "#479761",
+  //   color3: "#CEBC81",
+  //   color4: "#A16E83",
+  //   color5: "#B19F9E",
+  //   textColor: "#FFF",
+  //   colorSelect: "#41B3A3",
+  // },
+  
 ];

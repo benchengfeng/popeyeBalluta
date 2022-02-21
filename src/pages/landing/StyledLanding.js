@@ -1,24 +1,34 @@
 import styled, { css } from 'styled-components'
 const StyledLanding = styled.form`
+display: flex;
+justify-content: start;
+padding: 48px 72px 48px 48px;
+position: relative;
+height:88.4vh;
+background:${props => props.theme.color1};
+
+
+.container-page{
+  width: 100%;
   display: flex;
-  justify-content: start;
-  padding: 48px 72px 48px 48px;
+  flex-direction: row;
+}
+.wrapper-input-options {
+  margin-bottom: 6px;
   position: relative;
-  background:${props => props.theme.color2};
-
-
-  .wrapper-input-options {
-    margin-bottom: 6px;
-    position: relative;
-    svg {
-      position: absolute;
-      right: 6px;
-      cursor: pointer;
-      height: 20px;
-      top: 8px;
-      width: 20px;
-    }
+  svg {
+    position: absolute;
+    right: 6px;
+    cursor: move;
+    height: 20px;
+    top: 8px;
+    width: 20px;
   }
+}
+
+button:hover{
+  cursor:move;
+}
 
   .btn-landing:hover {
     box-shadow: 0 0px 10px rgba(112,112,112,0.5);
