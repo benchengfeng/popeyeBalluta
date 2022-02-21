@@ -12,24 +12,25 @@ import StyledHome from "./StyledHome";
 const Home = () => {
   const dispatch = useDispatch();
 
+  
   const themeState = useSelector((themeState) => themeState.ThemeState);
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
+  const [connectionSocket, setConnectionSocket] = useState(null);
+  const [lunchWsLocation, setLunchWsLocation] = useState([]);
+  const [villageWsLocation, setVillageWsLocation] = useState([]);
+  const [backHomeLocation, setBackHomeLocation] = useState([]);
+
   const [step, setStep] = useState(0);
   const [game, setGame] = useState(false);
-
   const [themeId, setThemeId] = useState(0);
   const [lunch, setLunch] = useState();
   const [village, setVillage] = useState();
   const [backHome, setBackHome] = useState();
-  const [lunchWsLocation, setLunchWsLocation] = useState([]);
-  const [villageWsLocation, setVillageWsLocation] = useState([]);
-  const [backHomeLocation, setBackHomeLocation] = useState([]);
   const [connection, setConnection] = useState(false);
-  const [connectionSocket, setConnectionSocket] = useState(null);
   const [journey, setJourney] = useState();
   const [pace, setPace] = useState("fast");
-  const [length, setLength] = useState(0);
+  const [character,setCharacter]=useState(null)
 
   // setting data received from server webSocket //
 
@@ -168,6 +169,10 @@ const Home = () => {
     setPace(e.target.id);
   };
 
+  const handleCharacter = (e) => {
+    setCharacter(e.target.id);
+  };
+
   const handleSlider = (e) => {
     setStep(e.target.value);
     setGame(false);
@@ -185,6 +190,31 @@ const Home = () => {
       <StyledHome>
         <div className="container-page">
           <div className="container-all-left">
+          <div className="container-btn-square">
+              <div className="btn-square" id="olive" onClick={handleCharacter}>
+                {character === "olive" ? (
+                  <h3 style={{ color: theme[themeId].colorSelect }}>
+                    Olive
+                  </h3>
+                ) : (
+                  <h3 id="olive" onClick={handleCharacter}>
+                    Olive
+                  </h3>
+                )}
+              </div>
+              <div className="btn-square" id="popeye" onClick={handleCharacter}>
+                {character === "popeye" ? (
+                  <h3 style={{ color: theme[themeId].colorSelect }}>
+                    Popeye
+                  </h3>
+                ) : (
+                  <h3 id="popeye" onClick={handleCharacter}>
+                    Popeye
+                  </h3>
+                )}
+              </div>
+            </div>
+
             <div className="container-btn-square">
               <div className="btn-square" id="work" onClick={handleJourney}>
                 {journey === "work" ? (
@@ -269,7 +299,6 @@ const Home = () => {
               <ProgressBar
                 handleSlider={handleSlider}
                 step={step}
-                length={length}
                 journey={journey}
                 game={game}
                 pace={pace}
@@ -289,6 +318,7 @@ const Home = () => {
                   handleStop={handleStop}
                   theme={theme}
                   pace={pace}
+                  character={character}
                 />
               </div>
             ) : (
@@ -299,8 +329,8 @@ const Home = () => {
             <Side
               handleSlider={handleSlider}
               step={step}
-              length={length}
               journey={journey}
+              character={character}
             />
           </div>
         </div>

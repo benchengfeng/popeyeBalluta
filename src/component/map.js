@@ -22,7 +22,7 @@ L.Icon.Default.mergeOptions({
 
 
 
-const MapComponent = ({ lunch, village, backHome, step, journey , game, handleRestart, handleStart, handleStop,themeId,pace}) => {
+const MapComponent = ({ lunch, village, backHome, step, journey , game, handleRestart, handleStart, handleStop,themeId,pace,character}) => {
   const [popeye, setPopeye] = useState([]);
   const [positionVillage, setPositionVillage] = useState(village);
   const [positionLunch, setPositionLunch] = useState(lunch);
@@ -39,10 +39,16 @@ if ( journey==="home" || journey==="work"){
   setTripIconSize([100,100])
 }
 if ( journey==="lunch"){
-  setTripIcon("https://cdn.filestackcontent.com/Il58ulSQ0SqH7YuoG3no")
-  setTripIconSize([18,75])
+  if (character==="olive"){
+    setTripIcon("https://cdn.filestackcontent.com/3ekvsyYgSMq2oaP7WyEP")
+    setTripIconSize([18,95])
+  }else if (character==="popeye"){    
+    setTripIcon("https://cdn.filestackcontent.com/Il58ulSQ0SqH7YuoG3no")
+    setTripIconSize([18,95])
+  }
+
 }
-  },[journey])
+  },[journey,character])
 
   var markerIcon = L.icon({
     iconUrl: tripIcon,
