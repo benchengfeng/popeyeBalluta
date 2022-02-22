@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import StyledProgressBar from "./styleProgressBar";
 
-const Side = ({ handleSlider, position, journey, step,character }) => {
+const Character = ({ handleSlider, position, journey, step,character }) => {
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
   const [length, setLength] = useState(0);
@@ -34,4 +33,4 @@ const Side = ({ handleSlider, position, journey, step,character }) => {
   );
 };
 
-export default Side;
+export default Character;

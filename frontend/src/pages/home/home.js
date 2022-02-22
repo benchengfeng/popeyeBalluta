@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import MapComponent from "../../component/map";
-import MenuList from "../../component/menuList";
-import ProgressBar from "../../component/progressBar";
-import Side from "../../component/side";
+import MapComponent from "../../component/map/map";
+import MenuList from "../../component/menuList/menuList";
+import ProgressBar from "../../component/progressBar/progressBar";
+import Character from "../../component/character/character";
 import { setThemeState } from "../../redux/slices/themeSlice";
 import { theme } from "../../util/theme";
 import StyledHome from "./StyledHome";
@@ -235,7 +235,7 @@ const Home = () => {
             )}
           </div>
           <div className="container-all-right">
-            <Side
+            <Character
               handleSlider={handleSlider}
               step={step}
               journey={journey}

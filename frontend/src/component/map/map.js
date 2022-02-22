@@ -10,7 +10,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { theme } from "../util/theme";
+import { theme } from "../../util/theme";
 import { Link } from "react-router-dom";
 
 delete L.Icon.Default.prototype._getIconUrl;

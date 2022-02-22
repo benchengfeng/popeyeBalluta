@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import StyledMenuList from "./styledMenuList";
-import { theme } from "../util/theme";
+import { theme } from "../../util/theme";
 const MenuList = ({ themeId, character, step, game, pace, journey,handleCharacter, handleJourney, handlePace}) => {
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
@@ -40,6 +40,7 @@ const MenuList = ({ themeId, character, step, game, pace, journey,handleCharacte
                 </h3>
               </div>
             )}
+            <div className="separator-vertical"></div>
 
             {journey === "lunch" ? (
               <div
@@ -59,6 +60,7 @@ const MenuList = ({ themeId, character, step, game, pace, journey,handleCharacte
                 </h3>
               </div>
             )}
+            <div className="separator-vertical"></div>
 
             {journey === "home" ? (
               <div
@@ -115,7 +117,7 @@ const MenuList = ({ themeId, character, step, game, pace, journey,handleCharacte
               </div>
             )}
           </div>
-
+<div className="separator-vertical"></div>
           <div className="container-btn-square-column">
             {pace === "fast" ? (
               <div

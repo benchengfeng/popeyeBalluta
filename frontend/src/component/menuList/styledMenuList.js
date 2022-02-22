@@ -24,6 +24,17 @@ const StyledMenuList = styled.form`
       width: 20px;
     }
   }
+ 
+  .separator-vertical{
+    border-right: 10px solid #080808;
+    border-radius: 20px;
+    padding:10px;
+    background:${props => props.theme.color5};
+  }
+  .separator-horizental{
+    border-bottom: 2px solid #080808;
+    border-radius: 20px;
+  }
 
   button:hover{
     cursor:move;

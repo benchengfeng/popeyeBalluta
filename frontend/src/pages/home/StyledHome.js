@@ -158,6 +158,16 @@ const StyledHome = styled.form`
     margin-top: 24px;
   }
 
+  .separator-vertical{
+    border-right: 10px solid #080808;
+    border-radius: 20px;
+    padding:10px;
+    background:${props => props.theme.color5};
+  }
+  .separator-horizental{
+    border-bottom: 2px solid #080808;
+    border-radius: 20px;
+  }
 
 
   /* REPONSIVE CONTAINER */

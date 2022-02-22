@@ -30,6 +30,17 @@ button:hover{
   cursor:move;
 }
 
+.separator-vertical{
+  border-right: 10px solid #080808;
+  border-radius: 20px;
+  padding:10px;
+  background:${props => props.theme.color5};
+}
+.separator-horizental{
+  border-bottom: 2px solid #080808;
+  border-radius: 20px;
+}
+
   .btn-landing:hover {
     box-shadow: 0 0px 10px rgba(112,112,112,0.5);
     transition: 400ms;
