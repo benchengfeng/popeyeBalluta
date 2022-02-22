@@ -63,7 +63,6 @@ wss.on("message", function message(data) {
 //  store the data in a mongo collection (if the data don’t already exist //
 
 app.get("/", (req, res) => {
-  console.log('village fetched');
   try{
 
     const lunchModel = new LunchModel({
@@ -89,7 +88,6 @@ app.get("/", (req, res) => {
       coordinates: geoVillage,
     });
     VillageModel.find().then((resolve) => {
-      console.log('village fetched',resolve);
       if (resolve.length === 0) {
         villageModel.save().catch((err) => {
           console.log(err);

@@ -17,7 +17,7 @@ function App() {
   
 
   // setting data received from server webSocket //
-
+ 
 
   useEffect(()=>{
 
@@ -30,7 +30,7 @@ function App() {
 
 
   useEffect(()=>{
-
+    console.log('connection attempt')
     if (connectionSocket){
     connectionSocket.addEventListener("message", function (event) {
       const data = eval(event.data);
@@ -42,6 +42,7 @@ function App() {
         dispatch(setVillageState(data[1]))
         // setVillage(data[1]);
       }
+
       storeInDatabase()
     });
   }
