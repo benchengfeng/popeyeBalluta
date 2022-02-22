@@ -63,30 +63,44 @@ wss.on("message", function message(data) {
 //  store the data in a mongo collection (if the data don’t already exist //
 
 app.get("/", (req, res) => {
-  const lunchModel = new LunchModel({
-    title: "lunch",
-    coordinates: geoLunch,
-  });
-  LunchModel.find().then((resolve) => {
-    if (resolve.length === 0) {
-      lunchModel.save().catch((err) => {
-        console.log(err);
-      });
-    }
-  });
+  console.log('village fetched');
+  try{
 
-  const villageModel = new VillageModel({
-    title: "village",
-    coordinates: geoVillage,
-  });
-  VillageModel.find().then((resolve) => {
-    console.log();
-    if (resolve.length === 0) {
-      villageModel.save().catch((err) => {
-        console.log(err);
-      });
-    }
-  });
+    const lunchModel = new LunchModel({
+      title: "lunch",
+      coordinates: geoLunch,
+    });
+    LunchModel.find().then((resolve) => {
+      if (resolve.length === 0) {
+        lunchModel.save().catch((err) => {
+          console.log(err);
+        });
+      }
+    });
+
+  }catch(err){
+    console.log('error',err)
+  }
+
+  try{
+
+    const villageModel = new VillageModel({
+      title: "village",
+      coordinates: geoVillage,
+    });
+    VillageModel.find().then((resolve) => {
+      console.log('village fetched',resolve);
+      if (resolve.length === 0) {
+        villageModel.save().catch((err) => {
+          console.log(err);
+        });
+      }
+    });
+
+  }catch(err){
+    console.log('error',err)
+  }
+  
 });
 
 // ***************** //
