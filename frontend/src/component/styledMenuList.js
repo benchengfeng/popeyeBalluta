@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-const StyledHome = styled.form`
+const StyledMenuList = styled.form`
   display: flex;
   justify-content: start;
   padding: 48px 72px 48px 48px;
@@ -10,7 +10,7 @@ const StyledHome = styled.form`
   .container-page{
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column !important;
   }
   .wrapper-input-options {
     margin-bottom: 6px;
@@ -45,21 +45,6 @@ const StyledHome = styled.form`
     font-size: 16px;
 }
 
-  .btn-landing{
-    position: relative;
-    text-color : white;
-    border: 2px solid #080808;
-    background: linear-gradient(90deg, rgba(161,45,45,1) 0%, rgba(8,0,40,1) 39%, rgba(12,58,68,1) 68%, rgba(195,17,17,1) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    height: 48px;
-    padding: 12px;
-    cursor: move;
-    margin-bottom: 24px;
-    font-size: 16px;
-  }
 
   .container-btn-square{
     width: 100%;
@@ -76,16 +61,25 @@ const StyledHome = styled.form`
     justify-content: space-evenly;
     
   }
+  .container-btn-square-column{
+    width: 100%;
+    background: ${props => props.theme.color2};
+    padding-top: 20px;
+    color:${props => props.theme.color2};
+    align-content:center;
+    min-height:150px;
+    max-width: 1056px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items : center;
+    
+  }
 
   .btn-banner:hover {
     box-shadow: 0 0px 10px rgba(112,112,112,0.5);
     transition: 400ms;
     border :10px solid #080808;
-}
-.btn-landing:hover {
-  box-shadow: 0 0px 10px rgba(112,112,112,0.5);
-  transition: 400ms;
-  border :10px solid #080808;
 }
 
 .container-btn-square:hover {
@@ -210,4 +204,4 @@ const StyledHome = styled.form`
   }
 `
 
-export default StyledHome
+export default StyledMenuList

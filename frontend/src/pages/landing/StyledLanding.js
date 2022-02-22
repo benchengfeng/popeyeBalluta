@@ -105,35 +105,6 @@ button:hover{
     margin-top: 24px;
   }
 
-  #btn-add-link {
-    position: relative;
-    width: 216px;
-    height: 48px;
-    background: ${props => props.theme.color3};
-    box-shadow: 0px 1px 16px 1px rgba(206, 206, 206, 0.36);
-    border-radius: 30px;
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 28px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: ${props => (props.theme.color3)};
-    outline: none;
-    cursor: pointer;
-    margin-right: 12px;
-
-    &:focus {
-      outline: none;
-    }
-    &:hover {
-      opacity: 0.9;
-    }
-  }
-
 
   /* REPONSIVE CONTAINER */
   ${({ width }) =>
