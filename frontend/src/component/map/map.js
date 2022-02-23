@@ -129,7 +129,7 @@ const MapComponent = ({
     <>
       <StyledMap>
         {" "}
-        <div className="">
+        <div className="" data-testId="map-1">
           <div>
             <ProgressBar
               handleSlider={handleSlider}
@@ -157,7 +157,7 @@ const MapComponent = ({
             </div>
           )}
         </div>
-        {lunch.length > 0 && village.length > 0 && (
+        {lunch?.length > 0 && village?.length > 0 && (
           <div style={{ width: "100%" }}>
             <MapContainer
               center={positionLunch}
