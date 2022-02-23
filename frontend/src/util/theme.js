@@ -80,6 +80,15 @@ export const theme = [
     textColor: "#FFF",
     colorSelect: "#41B3A3",
   },
+  {
+    color1: "#907163",
+    color2: "#86C232",
+    color3: "#222629",
+    color4: "#474B4F",
+    color5: "#6B6E70",
+    textColor: "#FFF",
+    colorSelect: "#41B3A3",
+  },
   // {
   //   color1: "#19181A",
   //   color2: "#479761",

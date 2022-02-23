@@ -3,8 +3,8 @@ const StyledLanding = styled.form`
 display: flex;
 justify-content: start;
 padding: 48px 72px 48px 48px;
-position: relative;
-height:88.4vh;
+position: 100%;
+min-height:90vh;
 background:${props => props.theme.color1};
 
 
@@ -12,22 +12,6 @@ background:${props => props.theme.color1};
   width: 100%;
   display: flex;
   flex-direction: row;
-}
-.wrapper-input-options {
-  margin-bottom: 6px;
-  position: relative;
-  svg {
-    position: absolute;
-    right: 6px;
-    cursor: move;
-    height: 20px;
-    top: 8px;
-    width: 20px;
-  }
-}
-
-button:hover{
-  cursor:move;
 }
 
 .separator-vertical{
@@ -65,9 +49,10 @@ button:hover{
 
   .btn-landing{
     position: relative;
-    text-color : white;
+    color : white;
+    font-size:30px;
     border: 2px solid #080808;
-    background: ${props => props.theme.color4};
+    background: #be230f;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,6 +130,12 @@ button:hover{
       }
     `}
   
+    
+    @media only screen  and (max-width:750px) {
+      .responsive-style{
+         display:none;
+      }
+
 
         @media screen and (max-width: 1100px) {
     padding: 0 24px 24px 24px;
