@@ -50,8 +50,13 @@ const MapComponent = ({
 
   useEffect(() => {
     if (journey === "home" || journey === "work") {
-      setTripIcon("https://cdn.filestackcontent.com/npQv8efxRDusdhV8bVs9");
-      setTripIconSize([100, 100]);
+      if (character === "corto") {
+        setTripIcon("https://cdn.filestackcontent.com/rqqOErISHG4TupnLWGLD");
+        setTripIconSize([100, 100]);
+      } else {
+        setTripIcon("https://cdn.filestackcontent.com/npQv8efxRDusdhV8bVs9");
+        setTripIconSize([100, 100]);
+      }
     }
     if (journey === "lunch") {
       if (character === "olive") {
@@ -60,6 +65,9 @@ const MapComponent = ({
       } else if (character === "popeye") {
         setTripIcon("https://cdn.filestackcontent.com/Il58ulSQ0SqH7YuoG3no");
         setTripIconSize([18, 95]);
+      } else if (character === "corto") {
+        setTripIcon("https://cdn.filestackcontent.com/2IPGbGK4TQ2IyHr1QC7t");
+        setTripIconSize([28, 95]);
       }
     }
   }, [journey, character]);
@@ -123,7 +131,7 @@ const MapComponent = ({
         {" "}
         <div className="">
           <div>
-        <ProgressBar
+            <ProgressBar
               handleSlider={handleSlider}
               step={step}
               journey={journey}
@@ -131,54 +139,53 @@ const MapComponent = ({
               pace={pace}
               themeId={themeId}
             />
-            </div>
-            {character && journey && pace && 
-                <div className="container-btn-map">
-                {game ? (
-                  <div className="btn-map" onClick={handleStop}>
-                    <h3 onClick={handleStop}>Stop</h3>
-                  </div>
-                ) : (
-                  <div className="btn-map" onClick={handleStart}>
-                    <h3 onClick={handleStart}>start</h3>
-                  </div>
-                )}
-                <div className="btn-map" onClick={handleRestart}>
-                  <h3 onClick={handleRestart}>Reset</h3>
+          </div>
+          {character && journey && pace && (
+            <div className="container-btn-map">
+              {game ? (
+                <div className="btn-map" onClick={handleStop}>
+                  <h3 onClick={handleStop}>Stop</h3>
                 </div>
-              </div>}
-      
+              ) : (
+                <div className="btn-map" onClick={handleStart}>
+                  <h3 onClick={handleStart}>start</h3>
+                </div>
+              )}
+              <div className="btn-map" onClick={handleRestart}>
+                <h3 onClick={handleRestart}>Reset</h3>
+              </div>
+            </div>
+          )}
         </div>
-
         {lunch.length > 0 && village.length > 0 && (
-          <div style={{width:'100%'}}>
-          <MapContainer
-            center={positionLunch}
-            zoom={16}
-            style={{ height: "440px", width:"100%"}}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+          <div style={{ width: "100%" }}>
+            <MapContainer
+              center={positionLunch}
+              zoom={16}
+              style={{ height: "440px", width: "100%" }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
 
-            <Marker position={position}>
-              <Popup>
-                <p className="place-name">{"[place.venue.name]"}</p>
-                <p className="place-address">
-                  {"[place.venue.location.address]"}
-                </p>
-                <p className="place-category">
-                  {"[place.venue.categories[0].name]"}
-                </p>
-              </Popup>
-            </Marker>
+              <Marker position={position}>
+                <Popup>
+                  <p className="place-name">{"[place.venue.name]"}</p>
+                  <p className="place-address">
+                    {"[place.venue.location.address]"}
+                  </p>
+                  <p className="place-category">
+                    {"[place.venue.categories[0].name]"}
+                  </p>
+                </Popup>
+              </Marker>
 
-            <SetViewOnClick animateRef={animateRef} position={position} />
-          </MapContainer>
+              <SetViewOnClick animateRef={animateRef} position={position} />
+            </MapContainer>
           </div>
         )}
-        </StyledMap>
+      </StyledMap>
     </>
   );
 };

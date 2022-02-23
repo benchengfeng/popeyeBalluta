@@ -18,6 +18,7 @@ const Character = ({ handleSlider, position, journey, step,character }) => {
   useEffect(()=>{
     if(character ==="popeye")setIconCharacter("https://cdn.filestackcontent.com/8RjwAhARSeGhRLdcxsGm")
     if(character ==="olive")setIconCharacter("https://cdn.filestackcontent.com/hvxOktvyRf6ik74Di6kY")
+    if(character ==="corto")setIconCharacter("https://cdn.filestackcontent.com/2IPGbGK4TQ2IyHr1QC7t")
   },[character])
 
   

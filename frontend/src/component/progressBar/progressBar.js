@@ -74,9 +74,8 @@ useEffect(() => {
   return (
     <StyledProgressBar>
       <div>
-        <div class="slidecontainer"  style={{color:theme[themeId].color1}}>
-          <p>Timeline</p>
-          <span>start time : {tripClock}</span>
+        <div class="btn-banner">
+          <span>trip clock {tripClock}</span>
           {/* <span>{clock}</span> */}
           <input
             type="range"

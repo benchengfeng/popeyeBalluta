@@ -101,7 +101,22 @@ const Home = () => {
     if (themeState) {
       setThemeId(themeState.activeId);
     }
-  }, []);
+  }, [themeState]);
+
+  useEffect(() => {
+    if (character ==="corto" ) {
+      setThemeId(1);
+      dispatch(setThemeState(1));
+    }
+    if (character ==="popeye" ) {
+      setThemeId(4);
+      dispatch(setThemeState(4));
+    }
+    if (character ==="olive" ) {
+      setThemeId(2);
+      dispatch(setThemeState(2));
+    }
+  }, [character]);
 
   const handleTheme = (e) => {
     setThemeId(e.target.id);
@@ -206,7 +221,7 @@ const Home = () => {
              {(character && pace && journey )? (
               <div
                 className="btn-banner"
-                style={{ margin:"20px", background:theme[themeId].color3, fontSize:"30px"}}
+                style={{  background:theme[themeId].color3, fontSize:"30px"}}
                 onClick={executeScroll}
               >
                 let's go!

@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components'
 const StyledMenuList = styled.form`
   display: flex;
   justify-content: start;
-  padding: 48px 72px 48px 48px;
   position: relative;
   background:${props => props.theme.color1};
 
