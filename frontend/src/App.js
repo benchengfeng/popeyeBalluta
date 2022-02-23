@@ -30,7 +30,6 @@ function App() {
 
 
   useEffect(()=>{
-    console.log('connection attempt')
     if (connectionSocket){
     connectionSocket.addEventListener("message", function (event) {
       const data = eval(event.data);

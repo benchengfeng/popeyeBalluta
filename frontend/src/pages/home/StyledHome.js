@@ -7,11 +7,16 @@ const StyledHome = styled.form`
   background:${props => props.theme.color1};
 
 
+  .main-container{
+    width: 100%;
+  }
+  
   .container-page{
     width: 100%;
     display: flex;
     flex-direction: row;
   }
+
   .wrapper-input-options {
     margin-bottom: 6px;
     position: relative;
@@ -95,7 +100,7 @@ const StyledHome = styled.form`
 }
 
 .btn-square:hover{
-  box-shadow: 0 0px 10px rgba(112,112,112,0.5);
+  box-shadow: 30px 10px 0px rgba(112,11,11,112);
   transition: 400ms;
   border :10px solid #080808;
 }

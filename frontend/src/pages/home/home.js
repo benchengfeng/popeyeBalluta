@@ -1,14 +1,14 @@
-import { useEffect, useState, useRef} from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import MapComponent from "../../component/map/map";
 import MenuList from "../../component/menuList/menuList";
-import ProgressBar from "../../component/progressBar/progressBar";
 import Character from "../../component/character/character";
 import { setThemeState } from "../../redux/slices/themeSlice";
 import { theme } from "../../util/theme";
 import StyledHome from "./StyledHome";
+import { IoIosArrowBack } from 'react-icons/io';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -32,8 +32,11 @@ const Home = () => {
   const [pace, setPace] = useState("fast");
   const [character, setCharacter] = useState(null);
 
-  // setting data received from server webSocket //
+  const mapRef = useRef(null);
+  const executeScroll = () => mapRef.current.scrollIntoView();
 
+  // setting data received from server webSocket //
+  console.log('step',step)
   useEffect(() => {
     if (connection === false) {
       const socket = new WebSocket("ws://localhost:8000");
@@ -51,14 +54,14 @@ const Home = () => {
           if (data[1]?.length > 0) {
             let arrayFix = data[1].reverse();
             setLunchWsLocation(arrayFix);
-            console.log("home socket lunch location", lunchWsLocation);
+            // console.log("home socket lunch location", lunchWsLocation);
           }
         }
         if (data[0] === "villageLocation") {
           if (data[1]?.length > 0) {
             let arrayFix = data[1].reverse();
             setVillageWsLocation(arrayFix);
-            console.log("home socket village location", villageWsLocation);
+            // console.log("home socket village location", villageWsLocation);
           }
         }
       });
@@ -71,14 +74,14 @@ const Home = () => {
     if (lunchState?.coordinates.length > 0) {
       setLunch(lunchState);
       setLunchWsLocation(lunchState.coordinates[0]);
-      console.log("lunchState[0]", lunchState.coordinates[0]);
+      // console.log("lunchState[0]", lunchState.coordinates[0]);
     }
   }, [lunchState]);
 
   useEffect(() => {
     if (villageState?.coordinates.length > 0) {
       setVillage(villageState);
-      console.log("villageState[0]", villageState.coordinates[0]);
+      // console.log("villageState[0]", villageState.coordinates[0]);
       setVillageWsLocation(villageState.coordinates[0]);
     }
   }, [villageState]);
@@ -90,7 +93,7 @@ const Home = () => {
         arrayFix.unshift(o);
       });
       setBackHome(arrayFix);
-      console.log("back home ", backHome);
+      // console.log("back home ", backHome);
     }
   }, [villageState]);
 
@@ -102,10 +105,11 @@ const Home = () => {
 
   const handleTheme = (e) => {
     setThemeId(e.target.id);
-    dispatch(setThemeState(0));
+    dispatch(setThemeState(e.target.id));
   };
 
   const handleStart = async (e) => {
+    let stepInt = parseInt(step)
     let timing = 1500;
     if (pace === "slow") {
       timing = 10000;
@@ -115,16 +119,16 @@ const Home = () => {
 
     if (journey === "home") {
       setTimeout(() => {
-        setBackHomeLocation(backHome[step]);
-        setStep(step + 1);
+        setBackHomeLocation(backHome[stepInt]);
+        setStep(stepInt + 1);
       }, timing);
     }
 
     if (village?.coordinates) {
       setTimeout(() => {
-        connectionSocket.send(step);
-        setStep(step + 1);
-        console.log("step home ", step);
+        connectionSocket.send(stepInt);
+        setStep(stepInt + 1);
+        console.log("step home ", stepInt);
       }, timing);
     }
   };
@@ -180,7 +184,13 @@ const Home = () => {
   return (
     <ThemeProvider theme={theme[themeId]}>
       <StyledHome>
+        <div className="main-container">
         <div className="container-page">
+        <div className="btn-map">
+        <Link to="/" style={{ textDecoration: "none" }}>
+                <h3><IoIosArrowBack/>Back</h3>
+            </Link>
+            </div>
           <div className="container-all-left">
             <MenuList
               themeId={themeId}
@@ -193,6 +203,20 @@ const Home = () => {
               handleJourney={handleJourney}
               handlePace={handlePace}
             />
+             {(character && pace && journey )? (
+              <div
+                className="btn-banner"
+                style={{ margin:"20px", background:theme[themeId].color3, fontSize:"30px"}}
+                onClick={executeScroll}
+              >
+                let's go!
+              </div>
+            ):(              <div
+              className="btn-banner"
+              style={{ margin:"20px", background:"#000" }}
+            >
+              Set your Trip
+            </div>)}
             <div className="container-buttons">
               {theme &&
                 theme.map((o, i) => (
@@ -204,17 +228,19 @@ const Home = () => {
                     Theme {i + 1}
                   </div>
                 ))}
-
-              <ProgressBar
-                handleSlider={handleSlider}
-                step={step}
-                journey={journey}
-                game={game}
-                pace={pace}
-              />
             </div>
-            {lunchWsLocation.length > 0 && villageWsLocation.length > 0 ? (
-              <div>
+          </div>
+          <div className="container-all-right">
+            <Character
+              handleSlider={handleSlider}
+              step={step}
+              journey={journey}
+              character={character}
+            />
+          </div>
+        </div>
+        {lunchWsLocation.length > 0 && villageWsLocation.length > 0 ? (
+              <div ref={mapRef} style={{paddingTop:"10px"}}>
                 <MapComponent
                   lunch={lunchWsLocation}
                   village={villageWsLocation}
@@ -228,20 +254,12 @@ const Home = () => {
                   theme={theme}
                   pace={pace}
                   character={character}
+                  handleSlider={handleSlider}
                 />
               </div>
             ) : (
               <div>loading ...</div>
             )}
-          </div>
-          <div className="container-all-right">
-            <Character
-              handleSlider={handleSlider}
-              step={step}
-              journey={journey}
-              character={character}
-            />
-          </div>
         </div>
       </StyledHome>
     </ThemeProvider>
