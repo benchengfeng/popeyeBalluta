@@ -16,18 +16,18 @@ const LandingPage = () => {
         <div className="container-all">
         <DecorationLanding />
           <Link to="/home" style={{ textDecoration: "none"}}>
-            <div className="btn-landing" name="theme1" style={{ fontSize:"30px"}}>
-              start the journey
+            <div className="btn-landing" name="theme1">
+              Start journey
             </div>
           </Link>
-          <div className="container-buttons">
-          <img src="https://cdn.filestackcontent.com/RNyg3rpCTNOKL3zNPym9" width="500" height="600"/>
-          <img src="https://cdn.filestackcontent.com/hvxOktvyRf6ik74Di6kY" width="500" height="600"/>
+          <div className="container-characters">
+          <img src="https://cdn.filestackcontent.com/RNyg3rpCTNOKL3zNPym9" />
+          <img src="https://cdn.filestackcontent.com/hvxOktvyRf6ik74Di6kY" />
         
           
           </div>
         </div>
-        <img src="https://cdn.filestackcontent.com/OfzCHSW2T6yVoxuPkcxU" width="500" height="600"/>
+        <img src="https://cdn.filestackcontent.com/OfzCHSW2T6yVoxuPkcxU" />
       </StyledLanding>
     </ThemeProvider>
   );

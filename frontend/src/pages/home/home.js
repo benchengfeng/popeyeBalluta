@@ -236,7 +236,7 @@ const Home = () => {
               {theme &&
                 theme.map((o, i) => (
                   <div
-                    className="btn-banner"
+                    className="btn-theme"
                     id={i}
                     onClick={(e) => handleTheme(e)}
                   >
