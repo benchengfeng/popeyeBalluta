@@ -80,14 +80,15 @@ background:${props => props.theme.color1};
   font-size: 16px;
 }
 
-.container-buttons{
+.container-characters{
   width: 100%;
-  background:${props => props.theme.color1};
+  background:#FFF;
   max-width: 1056px;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
+
 
   .container-all {
     width: 100%;

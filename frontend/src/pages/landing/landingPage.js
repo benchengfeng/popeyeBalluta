@@ -20,7 +20,14 @@ const LandingPage = () => {
               start the journey
             </div>
           </Link>
+          <div className="container-buttons">
+          <img src="https://cdn.filestackcontent.com/RNyg3rpCTNOKL3zNPym9" width="500" height="600"/>
+          <img src="https://cdn.filestackcontent.com/hvxOktvyRf6ik74Di6kY" width="500" height="600"/>
+        
+          
+          </div>
         </div>
+        <img src="https://cdn.filestackcontent.com/OfzCHSW2T6yVoxuPkcxU" width="500" height="600"/>
       </StyledLanding>
     </ThemeProvider>
   );
