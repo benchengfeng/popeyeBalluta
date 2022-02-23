@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 const StyledLanding = styled.form`
 display: flex;
-justify-content: start;
+justify-content: sctart;
 padding: 48px 72px 48px 48px;
 position: 100%;
 min-height:90vh;

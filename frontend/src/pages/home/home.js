@@ -228,7 +228,7 @@ const Home = () => {
               </div>
             ):(              <div
               className="btn-banner"
-              style={{ margin:"20px", background:"#000" }}
+              style={{ background:"#000" }}
             >
               Set your Trip
             </div>)}

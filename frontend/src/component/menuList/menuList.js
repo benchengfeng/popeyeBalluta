@@ -101,7 +101,6 @@ const MenuList = ({
               <div
                 className="btn-square"
                 id="olive"
-                style={{ border: "10px solid #080808" }}
                 onClick={handleCharacter}
                 style={{ border: `10px solid ${theme[themeId].color4}` }}
               >

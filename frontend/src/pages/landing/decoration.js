@@ -60,7 +60,7 @@ const DecorationTop = ({ color3 }) => {
           height="99.0408"
           rx="3.92354"
           transform="rotate(50.7901 264.653 96.3525)"
-          fill="#E9EEF9"
+          fill="#cfcfcf"
         />
         <rect
           x="334.459"
@@ -78,7 +78,7 @@ const DecorationTop = ({ color3 }) => {
           height="407.064"
           rx="6.08051"
           transform="rotate(51.5022 476.484 16.6082)"
-          fill="#E9EEF9"
+          fill="#cfcfcf"
         />
       </svg>
     </StyledDecorationTop>
@@ -133,7 +133,7 @@ const DecorationBottom = ({ color3 }) => {
         />
         <path
           d="M299.381 99.0726C302.243 96.8233 306.387 97.3202 308.636 100.182V100.182C310.885 103.044 310.388 107.188 307.526 109.437L70.327 295.841C67.4649 298.091 63.3214 297.594 61.0721 294.732V294.732C58.8229 291.87 59.3198 287.726 62.1819 285.477L299.381 99.0726Z"
-          fill="#E9EEF9"
+          fill="#cfcfcf"
         />
       </svg>
     </StyledDecorationBotom>
@@ -177,7 +177,7 @@ const DecorationBackgroundBuble = ({ color3 }) => {
         <circle
           r="19.5"
           transform="matrix(-1 0 0 1 41.5 66.5)"
-          fill="#E9EEF9"
+          fill="#cfcfcf"
         />
         <circle
           r="7.67514"
@@ -224,7 +224,7 @@ const DecorationBackgroundSun = ({ color3 }) => {
       <svg viewBox="0 0 105 206" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M-3.8147e-06 154.06C28.7188 154.06 52 131.295 52 103.214C52 75.1337 28.7188 52.3691 -3.8147e-06 52.3691C-28.7188 52.3691 -52 75.1337 -52 103.214C-52 131.295 -28.7188 154.06 -3.8147e-06 154.06Z"
-          fill="#E9EEF9"
+          fill="#cfcfcf"
         />
         <path
           d="M0 173.189C39.7645 173.189 72 141.635 72 102.711C72 63.7867 39.7645 32.2324 0 32.2324C-39.7645 32.2324 -72 63.7867 -72 102.711C-72 141.635 -39.7645 173.189 0 173.189Z"
@@ -248,7 +248,7 @@ const DecorationBackgroundSun = ({ color3 }) => {
 
 const DecorationLanding = () => {
 
-    const color3 = theme[8].color3
+    const color3 = theme[8].color1
 
     return (
             <div className="responsive-style">

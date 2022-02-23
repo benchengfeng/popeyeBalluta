@@ -81,7 +81,7 @@ export const theme = [
     colorSelect: "#41B3A3",
   },
   {
-    color1: "#907163",
+    color1: "#a70000",
     color2: "#86C232",
     color3: "#222629",
     color4: "#474B4F",
