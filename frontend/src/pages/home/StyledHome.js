@@ -16,6 +16,8 @@ const StyledHome = styled.form`
     flex-direction: row;
   }
 
+  
+
   .btn-banner{
     position: relative;
     color : ${props => props.theme.textColor};
@@ -63,6 +65,11 @@ const StyledHome = styled.form`
     box-shadow: 0 0px 10px rgba(112,112,112,0.5);
     transition: 400ms;
     border :10px solid #080808;
+}
+.btn-theme:hover {
+  box-shadow: 0 0px 10px rgba(112,112,112,0.5);
+  transition: 400ms;
+  border :10px solid #080808;
 }
 
 
