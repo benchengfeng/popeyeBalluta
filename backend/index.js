@@ -30,23 +30,35 @@ app.use(foodRoutes);
 
 // socket initializing & sending data to frontend //
 
-
 wss.on("connection", function connection(ws) {
-  console.log("recieved connection ");  
-
+  console.log("recieved connection ");
 
   ws.on("message", function message(event) {
     const step = event.toString();
-    if (step< geoLunch.length){
-    ws.send(JSON.stringify(["lunchLocation", geoLunch[step]]));
+    if (step < geoLunch.length) {
+      ws.send(JSON.stringify(["lunchLocation", geoLunch[step]]));
     }
-    if (step<geoVillage.length){
-    ws.send(JSON.stringify(["villageLocation", geoVillage[step]]));
+    if (step < geoVillage.length) {
+      ws.send(JSON.stringify(["villageLocation", geoVillage[step]]));
     }
   });
 
-  ws.send(JSON.stringify(["lunch", geoLunch]));
-  ws.send(JSON.stringify(["village", geoVillage]));
+  LunchModel.find().then((lunchDb) => {
+    if (lunchDb.length !== 0) {
+      ws.send(JSON.stringify(["lunch", lunchDb[0].coordinates]));
+    }else{
+      ws.send(JSON.stringify(["lunch", geoLunch]));
+    }
+  });
+  VillageModel.find().then((villageDb) => {
+    if (villageDb.length !== 0) {
+      ws.send(JSON.stringify(["village", villageDb[0].coordinates]));
+
+    }else{
+      ws.send(JSON.stringify(["village", geoVillage]));
+
+    }
+  });
 
 });
 
@@ -63,8 +75,7 @@ wss.on("message", function message(data) {
 //  store the data in a mongo collection (if the data don’t already exist //
 
 app.get("/", (req, res) => {
-  try{
-
+  try {
     const lunchModel = new LunchModel({
       title: "lunch",
       coordinates: geoLunch,
@@ -76,13 +87,11 @@ app.get("/", (req, res) => {
         });
       }
     });
-
-  }catch(err){
-    console.log('error',err)
+  } catch (err) {
+    console.log("error", err);
   }
 
-  try{
-
+  try {
     const villageModel = new VillageModel({
       title: "village",
       coordinates: geoVillage,
@@ -94,11 +103,9 @@ app.get("/", (req, res) => {
         });
       }
     });
-
-  }catch(err){
-    console.log('error',err)
+  } catch (err) {
+    console.log("error", err);
   }
-  
 });
 
 // ***************** //

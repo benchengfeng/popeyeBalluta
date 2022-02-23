@@ -238,6 +238,7 @@ const Home = () => {
                   <div
                     className="btn-theme"
                     id={i}
+                    key={i}
                     onClick={(e) => handleTheme(e)}
                   >
                     Theme {i + 1}

@@ -229,16 +229,16 @@ const DecorationBackgroundSun = ({ color3 }) => {
         <path
           d="M0 173.189C39.7645 173.189 72 141.635 72 102.711C72 63.7867 39.7645 32.2324 0 32.2324C-39.7645 32.2324 -72 63.7867 -72 102.711C-72 141.635 -39.7645 173.189 0 173.189Z"
           stroke={color3 ?? ""}
-          stroke-width="26"
-          stroke-miterlimit="10"
+          strokeWidth="26"
+          strokeMiterlimit="10"
         />
         <path
           d="M7.62939e-06 203.395C56.3331 203.395 102 158.54 102 103.214C102 47.8867 56.3331 3.03418 7.62939e-06 3.03418C-56.333 3.03418 -102 47.8867 -102 103.214C-102 158.54 -56.333 203.395 7.62939e-06 203.395Z"
           stroke="white"
-          stroke-width="3"
-          stroke-miterlimit="20"
-          stroke-linecap="round"
-          stroke-dasharray="30 30"
+          strokeWidth="3"
+          strokeMiterlimit="20"
+          strokeLinecap="round"
+          strokeDasharray="30 30"
         />
       </svg>
     </StyledDecorationBackgroundSun>

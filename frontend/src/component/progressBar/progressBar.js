@@ -74,7 +74,7 @@ useEffect(() => {
   return (
     <StyledProgressBar>
       <div>
-        <div class="btn-banner-timeline">
+        <div className="btn-banner-timeline">
           <span>trip clock {tripClock}</span>
           {/* <span>{clock}</span> */}
           <input
