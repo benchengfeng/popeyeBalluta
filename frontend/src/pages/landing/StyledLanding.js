@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components'
+import { keyframes } from "styled-components";
+
 const StyledLanding = styled.form`
 display: flex;
 justify-content: sctart;
@@ -7,7 +9,16 @@ position: 100%;
 min-height:90vh;
 background:${props => props.theme.color1};
 
+div{
+  animation: turnOnBg 1000ms linear forwards;
+}
 
+@keyframes turnOnBg{
+  0% { opacity: 0;}
+  25% { opacity: 0.25;}
+  75% { opacity: 0.75;}
+  100% { opacity: 1;}    
+}
 
 .container-characters{
   width: 100%;
@@ -22,6 +33,22 @@ background:${props => props.theme.color1};
     max-width: 1056px;
     display: flex;
     flex-direction: column;
+  }
+
+  .text-animation{
+    position: relative;
+    color : white;
+    font-size:20px;
+    border: 2px solid #080808;
+    background: green;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    border-radius: 20px;
+    height: 200px;
+    padding: 42px;
+    cursor: pointer;
+    margin-bottom: 24px;
   }
 
 
@@ -47,6 +74,28 @@ background:${props => props.theme.color1};
     margin-bottom: 24px;
     font-size: 40px;
   }
+
+
+
+
+  ${props => props.animate === true && ` 
+  div{
+    animation: fadingBg 1000ms linear forwards !important;
+  }
+
+  }` }
+
+  @keyframes fadingBg{
+    0% { opacity: 1;}
+    25% { opacity: 0.75;}
+    75% { opacity: 0.25;}
+    100% { opacity: 0;}    
+  }
+
+
+
+  
+
 
  img{
     width:500px;
@@ -89,3 +138,5 @@ background:${props => props.theme.color1};
 `
 
 export default StyledLanding
+
+
