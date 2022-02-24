@@ -38,6 +38,10 @@ clones the app from git repository into your chosen directory
 
 move to project directory : backend
 
+### `npm install`
+
+install node modules backend
+
 ### `npm run nodemon`
 
 run backend server <br/>
@@ -47,6 +51,10 @@ running on localhost:8000
 ### `cd ../frontend`
 
 move to project directory : frontend
+
+### `npm install`
+
+install node modules frontend
 
 ### `npm run start`
 
@@ -63,4 +71,4 @@ Launches the test runner in the interactive watch mode.<br />
 
 ## Author
 
-Med amine
+Ben Hiba
