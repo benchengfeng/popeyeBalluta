@@ -24,9 +24,9 @@ const LandingPage = () => {
   return (
     <ThemeProvider theme={theme[0]}>
       <StyledLanding animate={animate}>
-
+      <DecorationLanding/>
         <div className="container-all">
-          <DecorationLanding/>
+       
             <div className="btn-landing" name="theme1" onClick={handleStart} >
               {animate ? (
                 <Wrapper>
@@ -52,12 +52,6 @@ const LandingPage = () => {
 };
 export default LandingPage;
 
-const fadingBg = keyframes`
-  0% { opacity: 1;}
-  25% { opacity: 0.75;}
-  75% { opacity: 0.25;}
-  100% { opacity: 0;}
-`
 
 const animation = keyframes`
   0% { opacity: 1; transform: translateY(0px); }
@@ -77,21 +71,6 @@ const Wrapper = styled.span`
     animation-timing-function: linear;
   }
   span:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-`;
-
-const WrapperBg = styled.span`
-  display: inline-block;
-
-  div {
-    opacity: 0;
-    display: inline-block;
-    animation-name: ${fadingBg};
-    animation-duration: 2s;
-    animation-timing-function: linear;
-  }
-  div:nth-child(1) {
     animation-delay: 0.1s;
   }
 `;

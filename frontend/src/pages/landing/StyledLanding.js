@@ -9,7 +9,7 @@ position: 100%;
 min-height:90vh;
 background:${props => props.theme.color1};
 
-div{
+.container-all div{
   animation: turnOnBg 1000ms linear forwards;
 }
 
@@ -40,19 +40,25 @@ div{
     color : white;
     font-size:20px;
     border: 2px solid #080808;
-    background: green;
+    background: grey;
     display: flex;
     align-items: start;
     justify-content: start;
     border-radius: 20px;
-    height: 200px;
     padding: 42px;
     cursor: pointer;
     margin-bottom: 24px;
+    letter-spacing:7px;
   }
 
 
   .btn-landing:hover {
+    box-shadow: 0 0px 10px rgba(112,112,112,0.5);
+    transition: 400ms;
+    border :20px solid #080808;
+  }
+
+  .text-animation:hover {
     box-shadow: 0 0px 10px rgba(112,112,112,0.5);
     transition: 400ms;
     border :20px solid #080808;

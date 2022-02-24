@@ -9,12 +9,12 @@ export const theme = [
     colorSelect: "gold",
   },
   {
-    color1: "#0C0032",
-    color2: "#19061",
-    color3: "#240090",
-    color4: "#3500D3",
-    color5: "#282828",
-    textColor: "#FFF",
+    color1: "#EAE7DC",
+    color2: "#D8C3A5",
+    color3: "#8E8D8A",
+    color4: "#E98074",
+    color5: "#E85A4F",
+    textColor: "#000",
     colorSelect: "#41B3A3",
   },
   {
@@ -26,6 +26,16 @@ export const theme = [
     textColor: "#FFF",
     colorSelect: "#41B3A3",
   },
+  {
+    color1: "#0C0032",
+    color2: "#19061",
+    color3: "#240090",
+    color4: "#3500D3",
+    color5: "#282828",
+    textColor: "#FFF",
+    colorSelect: "#41B3A3",
+  },
+
   // {
   //   color1: "#05386B",
   //   color2: "#379683",
@@ -60,15 +70,6 @@ export const theme = [
     color4: "#FFE400",
     color5: "#14A76C",
     textColor: "#FFF",
-    colorSelect: "#41B3A3",
-  },
-  {
-    color1: "#EAE7DC",
-    color2: "#D8C3A5",
-    color3: "#8E8D8A",
-    color4: "#E98074",
-    color5: "#E85A4F",
-    textColor: "#000",
     colorSelect: "#41B3A3",
   },
   {

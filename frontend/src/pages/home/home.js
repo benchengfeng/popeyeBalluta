@@ -105,12 +105,12 @@ const Home = () => {
 
   useEffect(() => {
     if (character ==="corto" ) {
-      setThemeId(1);
-      dispatch(setThemeState(1));
+      setThemeId(3);
+      dispatch(setThemeState(3));
     }
     if (character ==="popeye" ) {
-      setThemeId(4);
-      dispatch(setThemeState(4));
+      setThemeId(1);
+      dispatch(setThemeState(1));
     }
     if (character ==="olive" ) {
       setThemeId(2);
