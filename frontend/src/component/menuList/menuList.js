@@ -19,7 +19,7 @@ const MenuList = ({
 
   return (
     <StyledMenuList>
-      <div className="container-page">
+      <div className="container-page" data-testId="menuList-1">
         <div className="container-btn-square" style={{ marginTop: "10px" }}>
           {journey === "work" ? (
             <div
@@ -49,13 +49,13 @@ const MenuList = ({
               style={{ border: `10px solid ${theme[themeId].color4}` }}
             >
               <h3 style={{ color: theme[themeId].colorSelect }}>
-                Going for Lunch
+                Going For Lunch
               </h3>
             </div>
           ) : (
             <div className="btn-square" id="lunch" onClick={handleJourney}>
               <h3 id="lunch" onClick={handleJourney}>
-                Going for Lunch
+                Going For Lunch
               </h3>
             </div>
           )}
