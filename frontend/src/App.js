@@ -1,6 +1,5 @@
-import "./App.css";
 import { useEffect, useState } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch} from "react-redux";
 import PagesNavigation from "./pages/pagesNavigation";
 import store from "./redux/store";
 import { setLunchState } from "./redux/slices/luncheSlice";
@@ -16,7 +15,7 @@ function App() {
   const [connectionSocket, setConnectionSocket] = useState(null);
   
 
-  // setting data received from server webSocket //
+  // receiving data from server webSocket and storing it in Redux//
  
 
   useEffect(()=>{
@@ -48,7 +47,9 @@ function App() {
 
   },[connection])
 
+    // ******************* //
 
+      // request to api responsible for storing data in mongodb //
   const storeInDatabase = async ()=>{
     var res = null;
     try {

@@ -3,30 +3,14 @@ import { useSelector } from "react-redux";
 import StyledProgressBar from "./styleProgressBar";
 import { theme} from "../../util/theme"
 
-const ProgressBar = ({ handleSlider, position, journey, step, game, pace}) => {
-  const themeState = useSelector((themeState) => themeState.ThemeState);
+const ProgressBar = ({ handleSlider, journey, step, game, pace}) => {
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
   const [length, setLength] = useState(0);
-  const [clock, setClock] = useState(null);
   const [tripClock, setTripClock] = useState(null);
   const [startDate, setStartDate] = useState(null);
-  const [themeId, setThemeId] = useState(0);
-
-//   useEffect(() => {
-//     setInterval(() => {
-//       var date = new Date();
-//       if (date) var time = getTime(date);
-//       setClock(time);
-//     }, 1000);
-//   }, [journey]);
 
 
-useEffect(() => {
-  if (themeState) {
-    setThemeId(themeState.activeId);
-  }
-}, []);
 
   useEffect(() => {
     if (!startDate && game) {

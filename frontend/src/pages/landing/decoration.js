@@ -1,38 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { theme } from "../../util/theme";
 
-const StyledDecorationBackgroundRocket = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  @media only screen and (max-width: 1250px) {
-    width: 70%;
-    height: auto;
-  }
-  svg {
-    @media only screen and (max-width: 1250px) {
-      width: 100%;
-      height: auto;
-    }
-    width: 576px;
-    height: 600px;
-  }
-`;
-const StyledDecorationBackgroundSmokeRocket = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0%;
-  z-index: 1;
-  svg {
-    @media only screen and (max-width: 1250px) {
-      width: 70%;
-      height: auto;
-    }
-    width: 576px;
-    height: 600px;
-  }
-`;
 
 const DecorationTop = ({ color3 }) => {
   return (

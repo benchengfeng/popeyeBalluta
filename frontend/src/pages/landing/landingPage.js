@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import StyledLanding from "./StyledLanding";
-import { Link } from "react-router-dom";
 import { theme } from "../../util/theme";
 import { ThemeProvider } from "styled-components";
 import styled, { css } from "styled-components";

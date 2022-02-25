@@ -1,19 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 
-const Character = ({ handleSlider, position, journey, step,character }) => {
-  const lunchState = useSelector((lunchState) => lunchState.LunchState);
-  const villageState = useSelector((villageState) => villageState.VillageState);
-  const [length, setLength] = useState(0);
+const Character = ({ character }) => {
+
   const [iconCharacter, setIconCharacter] = useState(null);
-
-  useEffect(() => {
-    if (lunchState && villageState) {
-      if (journey === "home" || journey === "work")
-        setLength(villageState?.coordinates.length);
-      if (journey === "lunch") setLength(lunchState?.coordinates.length);
-    }
-  }, [lunchState, villageState, journey]);
 
   useEffect(()=>{
     if(character ==="popeye")setIconCharacter("https://cdn.filestackcontent.com/8RjwAhARSeGhRLdcxsGm")

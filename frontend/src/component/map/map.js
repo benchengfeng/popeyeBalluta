@@ -4,14 +4,10 @@ import {
   MapContainer,
   TileLayer,
   Marker,
-  Popup,
-  useMapEvent,
   useMap,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { theme } from "../../util/theme";
-import { Link } from "react-router-dom";
 import ProgressBar from "../progressBar/progressBar";
 import StyledMap from "./styledMap";
 
@@ -38,8 +34,6 @@ const MapComponent = ({
   character,
   handleSlider,
 }) => {
-  const [positionVillage, setPositionVillage] = useState(village);
-  const [positionLunch, setPositionLunch] = useState(lunch);
   const [position, setPosition] = useState([0.1, 0.1]);
   const [tripIcon, setTripIcon] = useState(
     "https://cdn.filestackcontent.com/Il58ulSQ0SqH7YuoG3no"
@@ -75,11 +69,10 @@ const MapComponent = ({
   var markerIcon = L.icon({
     iconUrl: tripIcon,
 
-    iconSize: tripIconSize, // size of the icon
-    shadowSize: [0, 0], // size of the shadow
-    iconAnchor: [0, 0], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62], // the same for the shadow
-    popupAnchor: [-3, -76], // point from which the popup should open relative to the iconAnchor
+    iconSize: tripIconSize,
+    shadowSize: [0, 0],
+    iconAnchor: [0, 0], 
+    shadowAnchor: [4, 62], 
   });
 
   function SetViewOnClick({ animateRef, position }) {
@@ -98,20 +91,6 @@ const MapComponent = ({
 
     return null;
   }
-
-  useEffect(() => {
-    if (village?.length > 0) {
-      setPositionVillage(village);
-      // console.log("map position Village", positionVillage);
-    }
-  }, [village]);
-
-  useEffect(() => {
-    if (lunch?.length > 0) {
-      setPositionLunch(lunch);
-      // console.log("map position lunch", positionLunch);
-    }
-  }, [lunch]);
 
   useEffect(() => {
     if (journey === "lunch") {
@@ -160,7 +139,7 @@ const MapComponent = ({
         {lunch?.length > 0 && village?.length > 0 && (
           <div style={{ width: "100%" }}>
             <MapContainer
-              center={positionLunch}
+              center={position}
               zoom={16}
               style={{ height: "440px", width: "100%" }}
             >
@@ -170,15 +149,6 @@ const MapComponent = ({
               />
 
               <Marker position={position}>
-                <Popup>
-                  <p className="place-name">{"[place.venue.name]"}</p>
-                  <p className="place-address">
-                    {"[place.venue.location.address]"}
-                  </p>
-                  <p className="place-category">
-                    {"[place.venue.categories[0].name]"}
-                  </p>
-                </Popup>
               </Marker>
 
               <SetViewOnClick animateRef={animateRef} position={position} />

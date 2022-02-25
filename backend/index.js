@@ -20,11 +20,9 @@ app.use(cors());
 
 const villageRoutes = require("./routes/villageRoutes");
 const lunchRoutes = require("./routes/lunchRoutes");
-const foodRoutes = require("./routes/foodRoutes");
 
 app.use(villageRoutes);
 app.use(lunchRoutes);
-app.use(foodRoutes);
 
 // *************** //
 
@@ -64,7 +62,7 @@ wss.on("connection", function connection(ws) {
 
 // ***************** //
 
-// socket initializing & sending data to frontend //
+// socket log when message received from frontend//
 
 wss.on("message", function message(data) {
   console.log("received message", data);
@@ -113,6 +111,8 @@ app.get("/", (req, res) => {
 server.listen(8000, () => {
   console.log("socket on port", 8000);
 });
+
+/**********mongodb cloud connection */
 
 mongoose.connect(
   "mongodb+srv://root:rootpassword@cluster0.flikc.mongodb.net/popeyeRedAcre?retryWrites=true&w=majority",

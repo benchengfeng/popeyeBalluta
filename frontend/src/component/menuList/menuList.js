@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import StyledMenuList from "./styledMenuList";
 import { theme } from "../../util/theme";
-import { setThemeState } from "../../redux/slices/themeSlice";
 const MenuList = ({
   themeId,
   character,
-  step,
-  game,
   pace,
   journey,
   handleCharacter,
   handleJourney,
   handlePace,
 }) => {
-  const lunchState = useSelector((lunchState) => lunchState.LunchState);
-  const villageState = useSelector((villageState) => villageState.VillageState);
-
+ 
   return (
     <StyledMenuList>
       <div className="container-page" data-testId="menuList-1">

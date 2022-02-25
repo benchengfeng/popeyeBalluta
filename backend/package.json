@@ -8,7 +8,7 @@
     "build": "webpack",
     "start":"nodemon index.js"
     },
-  "author": "",
+  "author": "Ben Hiba",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

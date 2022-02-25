@@ -29,7 +29,7 @@ const Home = () => {
   const [backHome, setBackHome] = useState();
   const [connection, setConnection] = useState(false);
   const [journey, setJourney] = useState();
-  const [pace, setPace] = useState("fast");
+  const [pace, setPace] = useState("");
   const [character, setCharacter] = useState(null);
 
   const mapRef = useRef(null);
@@ -93,7 +93,6 @@ const Home = () => {
         arrayFix.unshift(o);
       });
       setBackHome(arrayFix);
-      // console.log("back home ", backHome);
     }
   }, [villageState]);
 
