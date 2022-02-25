@@ -4,7 +4,6 @@ Git repository
 
 https://github.com/benchengfeng/popeyeBalluta.git
 
-[https://github.com/benchengfeng/popeyeBalluta.git](https://github.com/benchengfeng/popeyeBalluta.git)
 
 ## Running The Project ON DOCKER  
 
