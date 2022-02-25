@@ -23,5 +23,5 @@ services:
     image: mongo
     restart: always
     ports:
-      - "27017:27017"
+      - "5001:5001"
     container_name: popeye-db
