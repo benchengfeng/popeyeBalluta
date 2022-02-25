@@ -16,7 +16,7 @@ const Character = ({ character }) => {
       <div>
           <div>
 {character && 
-          <img src={iconCharacter} width="500" height="600"/>
+          <img src={iconCharacter} alt=" " width="500" height="600"/>
 }
           </div>
       </div>

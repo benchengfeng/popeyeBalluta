@@ -26,6 +26,19 @@
     <title>React App</title>
   </head>
   <body>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("serviceWorker.js")
+          .then(function (registration) {
+            console.log("success load");
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+       }
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--

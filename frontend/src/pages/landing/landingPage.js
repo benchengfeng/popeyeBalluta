@@ -38,11 +38,11 @@ const LandingPage = () => {
             <TextAnimation />
           </div>
           <div className="container-characters">
-            <img src="https://cdn.filestackcontent.com/RNyg3rpCTNOKL3zNPym9" />
-            <img src="https://cdn.filestackcontent.com/hvxOktvyRf6ik74Di6kY" />
+            <img src="https://cdn.filestackcontent.com/RNyg3rpCTNOKL3zNPym9"  alt=""/>
+            <img src="https://cdn.filestackcontent.com/hvxOktvyRf6ik74Di6kY"  alt=""/>
           </div>
         </div>
-        <img src="https://cdn.filestackcontent.com/OfzCHSW2T6yVoxuPkcxU" />
+        <img src="https://cdn.filestackcontent.com/OfzCHSW2T6yVoxuPkcxU" alt=""/>
 
       </StyledLanding>
     </ThemeProvider>
