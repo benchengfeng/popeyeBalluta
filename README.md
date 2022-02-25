@@ -1,6 +1,10 @@
 # popeyeBalluta
 
- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Git repository 
+
+https://github.com/benchengfeng/popeyeBalluta.git
+
+[https://github.com/benchengfeng/popeyeBalluta.git](https://github.com/benchengfeng/popeyeBalluta.git)
 
 ## Running The Project ON DOCKER  
 
@@ -8,7 +12,7 @@ In a new directory, you can run:
 
 ### `git clone https://github.com/benchengfeng/popeyeBalluta.git`
 
-clones the app from git repository into your chosen directory
+clone the app from git repository into your chosen directory
 
 ### `cd popeyeBalluta`
 
