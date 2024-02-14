@@ -17,9 +17,9 @@ const Home = () => {
   const lunchState = useSelector((lunchState) => lunchState.LunchState);
   const villageState = useSelector((villageState) => villageState.VillageState);
   const [connectionSocket, setConnectionSocket] = useState(null);
-  const [lunchWsLocation, setLunchWsLocation] = useState([]);
-  const [villageWsLocation, setVillageWsLocation] = useState([]);
-  const [backHomeLocation, setBackHomeLocation] = useState([]);
+  const [lunchWsLocation, setLunchWsLocation] = useState([9.466942,-5.6142661,1]);
+  const [villageWsLocation, setVillageWsLocation] = useState([9.466942,-5.6142661,1]);
+  const [backHomeLocation, setBackHomeLocation] = useState([9.466942,-5.6142661,1]);
 
   const [step, setStep] = useState(0);
   const [game, setGame] = useState(false);

@@ -114,9 +114,9 @@ server.listen(8000, () => {
 
 /**********mongodb cloud connection */
 
-mongoose.connect(
-  "mongodb+srv://root:rootpassword@cluster0.flikc.mongodb.net/popeyeRedAcre?retryWrites=true&w=majority",
-  {
-    usenewUrlParser: true,
-  }
-);
+// mongoose.connect(
+//   "mongodb+srv://root:rootpassword@cluster0.flikc.mongodb.net/popeyeRedAcre?retryWrites=true&w=majority",
+//   {
+//     usenewUrlParser: true,
+//   }
+// );
